@@ -1,15 +1,15 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App(): JSX.Element {
-   const extensionOrigin = `chrome-extension://${chrome.runtime.id}`;
-
+function App() {
    return (
       <div className="App">
          <header className="App-header">
-            <img src={extensionOrigin + logo} className="App-logo" alt="logo" />
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>Welcome to options</p>
             <p>
-               Edit <code>src/App.tsx</code> and save to reload.
+               Edit <code>src/options/App.js</code> and save to reload.
             </p>
             <a
                className="App-link"

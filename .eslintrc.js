@@ -11,6 +11,7 @@ module.exports = {
     browser: true,
     es6: true,
     jest: true,
+    "webextensions": true
   },
   globals: {
     Atomics: 'readonly',

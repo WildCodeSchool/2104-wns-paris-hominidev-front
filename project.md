@@ -16,9 +16,11 @@ On update .eslintrc.js [ressource](https://brygrill.medium.com/create-react-app-
 
 On installe ce qu'il faut pour avoir un fichier de conf externe pour webpack sans faire de eject (à tester)
 ```bash
-$# yarn add -D customize-cra react-app-rewired copy-webpack-plugin react-app-rewire-multiple-entry @types/copy-webpack-plugin
+yarn add -D customize-cra react-app-rewired copy-webpack-plugin@6.2.1 react-app-rewire-multiple-entry @types/copy-webpack-plugin
 ```
 On crée ```config-overrides.js``` On suit ce [tuto](https://www.jamalx31.com/tech-posts/use-create-react-app-to-develop-chrome-extensions) pour le contenu. 
 
 Sur le même lien, on met à jour les scripts de package.json.
 
+yarn add @types/chrome --dev
+yarn add -D css-loader autoprefixer postcss-loader postcss
