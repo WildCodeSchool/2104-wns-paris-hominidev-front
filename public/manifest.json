@@ -1,0 +1,30 @@
+{
+  "short_name": "Pygma.link",
+  "manifest_version": 2,
+  "name": "Pygma.link",
+  "version": "0.1",
+  "description": "create-react-app for extensions",
+  "icons": {
+    "128": "logo128.png"
+  },
+  "permissions": [],
+  "web_accessible_resources": ["static/media/*.svg"],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "logo128.png",
+    "default_popup": "popup.html"
+  },
+  "options_page": "index.html",
+  "content_scripts": [
+    {
+      "run_at" :"document_end",
+      "matches": ["https://www.google.com/"],
+      "js": ["main.pygmalink.js"]
+    }
+  ]
+}
