@@ -8,7 +8,7 @@
     "128": "logo128.png"
   },
   "permissions": [],
-  "web_accessible_resources": ["static/media/*.svg"],
+  "web_accessible_resources": ["static/media/*.png","static/media/*.svg", "main.pygmalink.js", "main.pygmalink.js.map"],
   "background": {
     "scripts": [
       "background.js"

@@ -1,25 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+// eslint-disable-next-line import/no-named-as-default
+import SnailMenu from './overlay/SnailMenu';
 
 function App(): JSX.Element {
    const extensionOrigin = `chrome-extension://${chrome.runtime.id}`;
 
    return (
       <div className="App">
-         <header className="App-header">
-            <img src={extensionOrigin + logo} className="App-logo" alt="logo" />
-            <p>
-               Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <a
-               className="App-link"
-               href="https://reactjs.org"
-               target="_blank"
-               rel="noopener noreferrer"
-            >
-               Learn React
-            </a>
-         </header>
+         <SnailMenu path={extensionOrigin} />
       </div>
    );
 }

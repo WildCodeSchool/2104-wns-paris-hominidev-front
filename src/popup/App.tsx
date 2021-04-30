@@ -33,8 +33,3 @@ function App(): JSX.Element {
 }
 
 export default App;
-
-chrome.browserAction.onClicked.addListener(function (activeTab) {
-   const newURL = 'http://stackoverflow.com/';
-   chrome.tabs.create({ url: newURL });
-});
