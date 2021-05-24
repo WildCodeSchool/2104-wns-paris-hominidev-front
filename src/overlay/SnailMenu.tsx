@@ -33,6 +33,8 @@ function SnailMenu({ path }: ISnailMenu): JSX.Element {
                   height: '70px',
                   backgroundSize: 'contain',
                   backgroundRepeat: 'no-repeat',
+                  backgroundColor: 'transparent',
+                  border: '0 none',
                }}
                onDoubleClick={() => {
                   setMenuOpen(!menuOpen);

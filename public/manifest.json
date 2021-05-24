@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "run_at" :"document_end",
-      "matches": ["https://www.google.com/"],
+      "matches": ["https://www.google.com/","https://odyssey.wildcodeschool.com/"],
       "js": ["main.pygmalink.js"]
     }
   ]
