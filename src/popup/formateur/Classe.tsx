@@ -13,6 +13,14 @@ const Classe = () => {
           id='group-select'
         ></select>
       </form>
+      <div>
+        <input
+          data-testid='vueFormateurMain-classe-checkbox'
+          type='checkbox'
+          id='orderByResources'
+        />
+        <p>ordonner par ressources visitées</p>
+      </div>
     </div>
   );
 };

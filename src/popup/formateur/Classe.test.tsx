@@ -19,4 +19,7 @@ test('renders VueFormateurMain-classe', async () => {
   expect(
     screen.getByTestId('vueFormateurMain-classe-form-select')
   ).toBeInstanceOf(HTMLSelectElement);
+  expect(screen.getByTestId('vueFormateurMain-classe-checkbox')).toBeInstanceOf(
+    HTMLInputElement
+  );
 });
