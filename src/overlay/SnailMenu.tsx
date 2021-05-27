@@ -1,5 +1,4 @@
-/* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Draggable from 'react-draggable';
 import snailmenuBg from './snailmenu.png';
 import logo from '../logo.svg';
@@ -15,6 +14,7 @@ function SnailMenu({ path }: ISnailMenu): JSX.Element {
          <div
             id="snailmenu"
             className="handle"
+            data-testid="snailmenu"
             style={{
                position: 'absolute',
             }}
