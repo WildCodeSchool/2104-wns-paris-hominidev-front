@@ -4,8 +4,8 @@ import logo from '../../../assets/logo/logo.svg';
 
 const VueFormateurMain = () => {
   return (
-    <div data-testid='vueFormateurMain'>
-      <img data-testid='vueFormateurMain-logo' src={logo} />
+    <div data-testid='VueFormateurMain'>
+      <img data-testid='VueFormateurMain-logo' src={logo} />
       <TimerZone />
       <Classe />
     </div>

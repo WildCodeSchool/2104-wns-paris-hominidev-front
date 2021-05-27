@@ -1,5 +1,11 @@
+import EleveCard from './EleveCard';
+
 const Groupe = () => {
-  return <div></div>;
+  return (
+    <div data-testid='VueFormateurMain-Groupe'>
+      <EleveCard />
+    </div>
+  );
 };
 
 export default Groupe;

@@ -3,6 +3,9 @@ import { render, screen } from '@testing-library/react';
 
 import Groupe from './Groupe';
 
-test('renders Groupe', async () => {
+test('renders Groupe', () => {
   render(<Groupe />);
+  expect(screen.getByTestId('VueFormateurMain-Groupe')).toBeInstanceOf(
+    HTMLDivElement
+  );
 });

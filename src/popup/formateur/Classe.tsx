@@ -1,21 +1,21 @@
 const Classe = () => {
   return (
-    <div data-testid='vueFormateurMain-classe'>
-      <form data-testid='vueFormateurMain-classe-form'>
+    <div data-testid='VueFormateurMain-Classe'>
+      <form data-testid='VueFormateurMain-Classe-form'>
         <label
-          data-testid='vueFormateurMain-classe-form-label'
+          data-testid='VueFormateurMain-Classe-form-label'
           htmlFor='group-select'
         >
           CLASSE
         </label>
         <select
-          data-testid='vueFormateurMain-classe-form-select'
+          data-testid='VueFormateurMain-Classe-form-select'
           id='group-select'
         ></select>
       </form>
       <div>
         <input
-          data-testid='vueFormateurMain-classe-checkbox'
+          data-testid='VueFormateurMain-Classe-checkbox'
           type='checkbox'
           id='orderByResources'
         />
