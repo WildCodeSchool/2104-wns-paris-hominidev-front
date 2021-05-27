@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import Classe from './Classe';
 // on veut afficher le timer
-test('renders VueFormateurMain-classe', () => {
+test('should render Classe component', () => {
   render(<Classe />);
   // on veut afficher le timer dans une textarea
   expect(screen.getByTestId('VueFormateurMain-Classe')).toBeInstanceOf(
@@ -22,4 +22,14 @@ test('renders VueFormateurMain-classe', () => {
   expect(screen.getByTestId('VueFormateurMain-Classe-checkbox')).toBeInstanceOf(
     HTMLInputElement
   );
+});
+
+test('should display list of groups on Classe select', async () => {
+  render(<Classe />);
+  await expect(screen.getByText('choisissez un groupe')).toBeInTheDocument();
+  fireEvent.change(screen.getByTestId('VueFormateurMain-Classe-form-select'), {
+    target: { value: 'groupe 1' },
+  });
+  expect(screen.getByText('groupe 1')).toBeInTheDocument();
+  // await waitFor(() => screen.getByTestId());
 });

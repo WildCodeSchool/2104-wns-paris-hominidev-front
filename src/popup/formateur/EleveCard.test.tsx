@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import EleveCard from './EleveCard';
 
-test('renders EleveCard', () => {
+test('should render EleveCard component', () => {
   render(<EleveCard />);
   expect(
     screen.getByTestId('VueFormateurMain-Classe-Groupe-EleveCard')

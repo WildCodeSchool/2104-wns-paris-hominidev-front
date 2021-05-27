@@ -11,7 +11,10 @@ const Classe = () => {
         <select
           data-testid='VueFormateurMain-Classe-form-select'
           id='group-select'
-        ></select>
+        >
+          <option value=''>choisissez un groupe</option>
+          <option value='groupe 1'>groupe 1</option>
+        </select>
       </form>
       <div>
         <input

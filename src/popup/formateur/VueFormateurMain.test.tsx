@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import VueFormateurMain from './VueFormateurMain';
 
 // on veut afficher un composant jsx VueFormateurMain.jsx
-test('renders VueFormateurMain', async () => {
+test('should render VueFormateurMain component', async () => {
   render(<VueFormateurMain />);
   await waitFor(() => screen.getByTestId('VueFormateurMain'));
   expect(screen.getByTestId('VueFormateurMain')).toBeInstanceOf(HTMLDivElement);
