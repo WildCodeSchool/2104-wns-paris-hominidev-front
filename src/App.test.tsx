@@ -1,9 +1,19 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { chrome } from 'jest-chrome';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+// Fix nécessaire pour permettre à l'objet Chrome d'être connu dans jest
+Object.assign(global, { chrome });
+
+test('SnailMenu is there', async () => {
+   // Tester que le chrome est "mocké"
+   expect(chrome).toBeDefined();
+   expect(chrome.runtime).toBeDefined();
+   expect(chrome.runtime.sendMessage).toBeDefined();
+
+   render(<App />);
+
+   // le snailmenu existe
+   const snailmenu = await waitFor(() => screen.getByTestId('snailmenu'));
+   expect(snailmenu).toBeInTheDocument();
 });
