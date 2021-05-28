@@ -1,12 +1,7 @@
-import {
-   screen,
-   getByRole,
-   render,
-   fireEvent,
-   getByTestId,
-} from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import * as chrome from 'sinon-chrome';
 import App from './App';
+import Popup from './component/popup';
 
 beforeAll(() => {
    global.chrome = chrome;
@@ -24,9 +19,18 @@ test('render password input element', () => {
    const inputElement = screen.getByPlaceholderText('password');
    expect(inputElement).toBeTruthy();
 });
-test('initial condition', () => {
-   const mock = jest.fn();
-   render(<App />);
+test('should display login if offline', () => {
+   render(<Popup online={false} />);
+   expect(screen.getByText('mot de passe oublié')).toBeInTheDocument();
+});
+test('should display student dashboard if online', () => {
+   render(<Popup online />);
+   expect(screen.getByText('dashboard')).toBeInTheDocument();
+});
+test('should call handleSubmit onKeypress Enter', () => {
+   const mockFunction = jest.fn();
+   render(<Popup online={false} handleSubmit={mockFunction} />);
    const inputElement = screen.getByPlaceholderText('password');
    fireEvent.keyPress(inputElement, { key: 'Enter', charCode: 13 });
+   expect(mockFunction).toHaveBeenCalledTimes(1);
 });
