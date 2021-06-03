@@ -8,4 +8,10 @@ test('should render Groupe component', () => {
   expect(screen.getByTestId('VueFormateurMain-Groupe')).toBeInstanceOf(
     HTMLDivElement
   );
+  expect(
+    screen.getByTestId('VueFormateurMain-Classe-leftSliderButton')
+  ).toBeInstanceOf(HTMLButtonElement);
+  expect(
+    screen.getByTestId('VueFormateurMain-Classe-rightSliderButton')
+  ).toBeInstanceOf(HTMLButtonElement);
 });

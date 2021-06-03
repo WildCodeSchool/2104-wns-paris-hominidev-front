@@ -1,8 +1,13 @@
-const TimerZone = () => {
+type TimerZoneProps = {
+  time: string;
+};
+const TimerZone = ({ time }: TimerZoneProps) => {
   return (
-    <textarea data-testid='vueFormateurMain-timerzone' name='timer'>
-      Timer
-    </textarea>
+    <textarea
+      data-testid='vueFormateurMain-timerzone'
+      name='timer'
+      value={time}
+    ></textarea>
   );
 };
 
