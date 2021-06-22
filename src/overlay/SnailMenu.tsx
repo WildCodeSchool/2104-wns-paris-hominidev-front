@@ -24,7 +24,7 @@ function SnailMenu({snailMenuOpen, setSnailMenuOpen, children}:SnailMenuProps):a
         style={{
           position: 'absolute',
         }}
-      >
+      >xsxsx
 
         {children}
         <button
