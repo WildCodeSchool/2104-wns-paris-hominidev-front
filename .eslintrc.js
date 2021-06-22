@@ -11,11 +11,12 @@ module.exports = {
     browser: true,
     es6: true,
     jest: true,
-    "webextensions": true
+    webextensions: true,
   },
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    chrome: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
