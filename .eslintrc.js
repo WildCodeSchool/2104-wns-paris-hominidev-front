@@ -42,6 +42,7 @@ module.exports = {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "react/jsx-props-no-spreading":"off",
     "react/jsx-filename-extension": [
       2,
       { extensions: [".js", ".jsx", ".ts", ".tsx"] },

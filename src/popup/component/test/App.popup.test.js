@@ -1,7 +1,7 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import * as chrome from 'sinon-chrome';
-import App from './App';
-import Popup from './component/popup';
+import App from '../App';
+import Popup from '../pages/popup';
 
 beforeAll(() => {
    global.chrome = chrome;
@@ -11,7 +11,7 @@ const Input = ({ onKeyPress }) => <input onKeyPress={onKeyPress} />;
 
 test('render username input element', () => {
    render(<App />);
-   const inputElement = screen.getByPlaceholderText('username');
+   const inputElement = screen.getByPlaceholderText('firstname');
    expect(inputElement).toBeTruthy();
 });
 test('render password input element', () => {

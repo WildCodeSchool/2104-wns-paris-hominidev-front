@@ -1,16 +1,19 @@
+import './styles/login.css';
+
 type PopupProps = {
    handleSubmit: (e: any) => void;
 };
 const Login = ({ handleSubmit }: PopupProps) => {
    return (
-      <div data-testid="online" className="online">
+      <div data-testid="online" className="loginMain">
          <form>
-            <label id="username" htmlFor="username">
-               Username
+            <label id="email" htmlFor="email">
+               Email
                <br />
-               <input type="text" name="username" placeholder="username" />
+               <input type="text" name="email" placeholder="email" />
             </label>
             <label id="password" htmlFor="password">
+               <br />
                Password
                <br />
                <input
@@ -21,6 +24,7 @@ const Login = ({ handleSubmit }: PopupProps) => {
                />
             </label>
          </form>
+         <p className="link"> Pas encore inscrit ?</p>
          <p> mot de passe oublié </p>
       </div>
    );

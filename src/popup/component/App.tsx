@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Popup from './component/popup';
-import Register from './component/popup.register';
-import './App.css';
+import Popup from './pages/popup';
+import Register from './pages/popup.register';
+import PopupLayout from './pages/popup.layout';
 
 function App(): JSX.Element {
    const extensionOrigin = `chrome-extension://${chrome.runtime.id}`;
@@ -14,18 +14,22 @@ function App(): JSX.Element {
    };
    const handleRegisterSubmit = (e: any) => {
       if (e.key === 'Enter') {
+         console.log(e);
          setRegister(true);
       }
    };
 
    return (
-      <>
+      <PopupLayout>
          {!register ? (
-            <Register handleRegisterSubmit={handleRegisterSubmit} />
+            <Register
+               setRedirect={setRegister}
+               handleRegisterSubmit={handleRegisterSubmit}
+            />
          ) : (
             <Popup online={online} handleSubmit={handleSubmit} />
          )}
-      </>
+      </PopupLayout>
    );
 }
 export default App;

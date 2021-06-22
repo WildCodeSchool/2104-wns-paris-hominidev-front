@@ -1,8 +1,16 @@
-const StudentDashboard = () => {
+import './styles/student.css';
+
+type StudentProps = {
+   avatar: any;
+   firstName: string;
+};
+
+const StudentDashboard = ({ avatar, firstName }: StudentProps) => {
    return (
-      <div className="offline">
-         <div className="mainStudent">
-            <p> avatar </p>
+      <div className="studentMain">
+         <h1> Bienvenue {firstName} </h1>
+         <div className="studentInfo">
+            <img src={avatar} alt="avatar" className="avatar" />
             <p> mon profil </p>
             <p> dashboard</p>
          </div>

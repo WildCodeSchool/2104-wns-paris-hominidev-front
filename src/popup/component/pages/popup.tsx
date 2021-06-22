@@ -1,6 +1,8 @@
-import logo from '../asset/logo.png';
 import Login from './popup.login';
 import StudentDashboard from './popup.studentDashboard';
+import './styles/popup.css';
+
+import defAvatar from '../../asset/pngegg.png';
 
 type PopupProps = {
    online: boolean;
@@ -9,13 +11,11 @@ type PopupProps = {
 
 const Popup = ({ online, handleSubmit }: PopupProps) => {
    return (
-      <div className="App">
-         <img src={logo} className="App-logo" alt="logo" />
-         <h1> Connection !</h1>
+      <div className="popupMain">
          {!online ? (
             <Login handleSubmit={handleSubmit} />
          ) : (
-            <StudentDashboard />
+            <StudentDashboard avatar={defAvatar} firstName="Oner" />
          )}
       </div>
    );

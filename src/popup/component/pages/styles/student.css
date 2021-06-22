@@ -1,0 +1,9 @@
+.studentMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.avatar{
+    width: 80px;
+}
