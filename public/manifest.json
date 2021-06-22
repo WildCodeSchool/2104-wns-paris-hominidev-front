@@ -1,30 +1,29 @@
 {
-  "short_name": "Pygma.link",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "manifest_version": 2,
-  "name": "Pygma.link",
-  "version": "0.1",
-  "description": "create-react-app for extensions",
+  "version": "1.0",
+  "description": "Foobar extension made with React.",
   "icons": {
-    "128": "logo128.png"
+    "192": "logo192.png",
+    "512": "logo512.png"
   },
-  "permissions": [],
-  "web_accessible_resources": ["static/media/*.png","static/media/*.svg", "main.pygmalink.js", "main.pygmalink.js.map"],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
+  "web_accessible_resources": ["images/*.png","images/*.svg", "static/js/*.js"],
   "browser_action": {
-    "default_icon": "logo128.png",
+    "default_icon": "logo192.png",
+    "default_title": "PYGMA.LINK - Menu",
     "default_popup": "popup.html"
   },
-  "options_page": "index.html",
-  "content_scripts": [
-    {
-      "run_at" :"document_end",
-      "matches": ["https://www.google.com/","https://odyssey.wildcodeschool.com/"],
-      "js": ["main.pygmalink.js"]
-    }
+  "devtools_page": "devtools.html",
+  "options_page": "dashboard.html",
+  "background": {
+    "scripts": ["static/js/background.js","static/js/hot-reload.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "<all_urls>"
   ]
 }
+

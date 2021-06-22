@@ -1,35 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { browser } from 'webextension-polyfill-ts';
+
+import logo from '../assets/logo/logo.svg';
+import './App.scss';
 
 function App(): JSX.Element {
-   const extensionOrigin = `chrome-extension://${chrome.runtime.id}`;
+  const extensionOrigin = browser.runtime.getURL('/dashboard.html');
 
-   return (
-      <div className="App">
-         <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>Welcome to popup</p>
-            <p>
-               Edit <code>src/popup/App.js</code> and save to reload.
-            </p>
-            <span
-               className="App-link"
-               data-target="_blank"
-               data-rel="noopener noreferrer"
-            >
-               Learn React TOTO
-            </span>
-            <button
-               type="button"
-               onClick={() =>
-                  chrome.tabs.create({ url: `${extensionOrigin}/index.html` })
-               }
-            >
-               Aller à l&apos;admin
-            </button>
-         </header>
-      </div>
-   );
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img alt="logo" className="App-logo" src={logo} />
+        <p>Welcome to pipo</p>
+        <p>
+          Prout <code>src/popup/App.js</code> and save to reload.ee
+        </p>
+        <span
+          className="App-link"
+          data-rel="noopener noreferrer"
+          data-target="_blank"
+        >
+          Learn React TOTO
+        </span>
+        <button 
+          onClick={() => {
+            browser.tabs.create({ url: `${extensionOrigin}` });
+          }}
+          type="button"
+        >
+          Aller à l&apos;admin
+        </button>
+      </header>
+    </div>
+  );
 }
 
 export default App;
