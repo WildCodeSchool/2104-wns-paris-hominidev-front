@@ -5,7 +5,7 @@ import VueFormateurMain from './VueFormateurMain';
 
 // on veut afficher un composant jsx VueFormateurMain.jsx
 test('should render VueFormateurMain component', async () => {
-  render(<VueFormateurMain />);
+  render(<VueFormateurMain time='10:12' />);
   await waitFor(() => screen.getByTestId('VueFormateurMain'));
   expect(screen.getByTestId('VueFormateurMain')).toBeInstanceOf(HTMLDivElement);
   // on veut afficher un logo sous forme d'image
