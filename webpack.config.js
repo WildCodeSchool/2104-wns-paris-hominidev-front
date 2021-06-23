@@ -70,7 +70,8 @@ module.exports = {
       host: '127.0.0.1', 
       port: 8080,
       https:false,
-      public:'127.0.0.1:8080'
+      public:'127.0.0.1:8080',
+      hot: true
     },
    plugins: [
       new CopyPlugin({
