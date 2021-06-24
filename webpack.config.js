@@ -67,11 +67,9 @@ module.exports = {
    devServer: {
       writeToDisk: true,
       disableHostCheck: true,
-      host: '127.0.0.1', 
-      port: 8080,
       https:false,
-      public:'127.0.0.1:8080',
-      hot: true
+      host: '0.0.0.0',
+      public: 'localhost:8080'
     },
    plugins: [
       new CopyPlugin({

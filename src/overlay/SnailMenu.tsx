@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import Draggable from 'react-draggable';
 
 import { browser } from 'webextension-polyfill-ts';
@@ -24,7 +24,7 @@ function SnailMenu({snailMenuOpen, setSnailMenuOpen, children}:SnailMenuProps):a
         style={{
           position: 'absolute',
         }}
-      >xsxsx
+      >
 
         {children}
         <button

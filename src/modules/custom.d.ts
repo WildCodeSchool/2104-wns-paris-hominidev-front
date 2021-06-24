@@ -1,4 +1,8 @@
 declare module "*.svg" {
-    const content: any;
-    export default content;
-  }
+  const content: any;
+  export default content;
+}
+declare module "react-draggable";
+
+declare module "redux-webext";
+
