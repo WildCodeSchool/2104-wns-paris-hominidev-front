@@ -19,7 +19,6 @@
     "static/media/logo.svg": "/static/media/logo.a8d5ae51.svg"
   },
   "entrypoints": [
-    "main.pygmalink.js",
-    "main.2a915f28efcc101779f7.hot-update.js"
+    "main.pygmalink.js"
   ]
 }

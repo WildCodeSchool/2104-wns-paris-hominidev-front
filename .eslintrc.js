@@ -4,7 +4,7 @@ module.exports = {
     'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   plugins: ['react', '@typescript-eslint', 'jest'],
   env: {
@@ -32,12 +32,12 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        "endOfLine": 'auto',
-        "semi": true,
-        "trailingComma": "all",
-        "singleQuote": true,
-        "printWidth": 80,
-        "tabWidth": 3
+        endOfLine: 'auto',
+        semi: true,
+        trailingComma: 'all',
+        singleQuote: false,
+        printWidth: 80,
+        tabWidth: 2,
       },
     ],
     // suppress errors for missing 'import React' in files
@@ -46,10 +46,10 @@ module.exports = {
     "react/jsx-props-no-spreading":"off",
     "react/jsx-filename-extension": [
       2,
-      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": 0,
-    "@typescript-eslint/camelcase": "off"
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/camelcase': 'off',
   },
 };
