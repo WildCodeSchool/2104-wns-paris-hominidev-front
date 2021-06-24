@@ -9,9 +9,11 @@ COPY tsconfig.json ./
 COPY .env ./
 
 RUN yarn
-# native dependencies, need extra tools
 # edit tools, just in case
 RUN apk add --no-cache nano
+# native dependencies, need extra tools
+RUN apk add --no-cache make gcc g++ python3
+
 COPY webpack.config.js ./
 
 CMD ["yarn", "start"]
