@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import logo from '../../asset/logo.png';
+import logo from '../../../assets/logo/logo.png';
 import './styles/layout.css';
 
 const PopupLayout: FC = ({ children }) => {
