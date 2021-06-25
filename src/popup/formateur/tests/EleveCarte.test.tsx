@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import EleveCarte from './EleveCarte';
+import EleveCarte from '../uiComponents/EleveCarte';
 
 const EleveCarteProps = {
   portrait:

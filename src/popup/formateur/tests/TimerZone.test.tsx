@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import TimerZone from './TimerZone';
+import TimerZone from '../uiComponents/TimerZone';
 
 const TimerZoneProps = {
   time: '10:12',

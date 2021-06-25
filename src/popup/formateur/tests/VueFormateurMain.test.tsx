@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 
-import VueFormateurMain from './VueFormateurMain';
+import VueFormateurMain from '../views/VueFormateurMain';
 
 // on veut afficher un composant jsx VueFormateurMain.jsx
 test('should render VueFormateurMain component', async () => {
