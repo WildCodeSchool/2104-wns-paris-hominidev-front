@@ -16,9 +16,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- entry.tsx *(entry point)*  
 &nbsp;&nbsp;&nbsp;|-- **fctComponents** *(common atomic components with no display)*  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- constants.tsx
-
 &nbsp;&nbsp;&nbsp;|-- **uiComponents** *(common atomic components with display)*  
-&nbsp;&nbsp;&nbsp;|-- **** *(common assets (images, fonts...)*)  
 
 ## Nomenclatures
 Inside an extension slot folder, all file must respect the following naming convention :
