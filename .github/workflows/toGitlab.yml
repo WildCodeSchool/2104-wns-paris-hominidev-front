@@ -1,0 +1,19 @@
+name: Mirror and run GitLab CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Mirror + trigger CI
+      uses: SvanBoxel/gitlab-mirror-and-ci-action@master
+      with:
+        args: "https://git.lysden.art/pygma.link/browser-extension"
+      env:
+        GITLAB_HOSTNAME: "git.lysden.art"
+        GITLAB_USERNAME: "yann"
+        GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }} 
+        GITLAB_PROJECT_ID: "7"
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }} // https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
