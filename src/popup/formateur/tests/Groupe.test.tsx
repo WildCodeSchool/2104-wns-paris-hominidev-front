@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import Groupe from './Groupe';
+import Groupe from '../uiComponents/Groupe';
 
 test('should render Groupe component', () => {
   render(<Groupe />);

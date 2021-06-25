@@ -1,5 +1,5 @@
-import TimerZone from './TimerZone';
-import Classe from './Classe';
+import TimerZone from '../uiComponents/TimerZone';
+import Classe from '../uiComponents/Classe';
 import logo from '../../../assets/logo/logo.svg';
 
 const VueFormateurMain = ({ time }: { time: string }) => {

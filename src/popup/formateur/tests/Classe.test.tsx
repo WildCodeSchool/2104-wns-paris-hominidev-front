@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
-import Classe from './Classe';
+import Classe from '../uiComponents/Classe';
 // on veut afficher le timer
 test('should render Classe component', () => {
   render(<Classe />);
