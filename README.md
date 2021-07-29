@@ -15,7 +15,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **tests** *(test scripts)*  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- entry.tsx *(entry point)*  
 &nbsp;&nbsp;&nbsp;|-- **fctComponents** *(common atomic components with no display)*  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- constants.tsx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- constants.tsx\
 &nbsp;&nbsp;&nbsp;|-- **uiComponents** *(common atomic components with display)*  
 
 ## Nomenclatures
