@@ -6,16 +6,15 @@ import defAvatar from "../../asset/pngegg.png";
 
 type PopupProps = {
   online: boolean;
-  handleSubmit: (e: any) => void;
 };
 
-const Popup = ({ online, handleSubmit }: PopupProps) => {
+const Popup = ({ online }: PopupProps) => {
   return (
     <div className="popupMain">
       {!online ? (
-        <Login handleSubmit={handleSubmit} />
+        <Login />
       ) : (
-        <StudentDashboard avatar={defAvatar} firstName="Oner" />
+        <StudentDashboard avatar={defAvatar} firstName="Oneristan" />
       )}
     </div>
   );

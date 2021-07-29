@@ -7,11 +7,14 @@ type PopupProps = {
   handleSubmit: (e: any) => void;
 };
 
-const Login = ({ handleSubmit }: PopupProps) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email, password);
-
+  const handleSubmit = (e: any) => {
+    if (e.key === "Enter") {
+      alert("bbb");
+    }
+  };
   return (
     <div data-testid="online" className="loginMain">
       <form>
