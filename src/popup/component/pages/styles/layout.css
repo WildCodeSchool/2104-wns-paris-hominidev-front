@@ -28,7 +28,8 @@ img{
     width: 150px;
 }
 .link{
-    color: blue;
+    color: #d76641;
+    font-weight: bold;
     text-decoration: underline;
     cursor: pointer;
 
