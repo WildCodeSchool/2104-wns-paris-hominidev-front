@@ -4,46 +4,64 @@ import { useLazyQuery, gql } from "@apollo/client";
 import "./styles/login.css";
 
 type PopupProps = {
-  handleSubmit: (e: any) => void;
+  setOnline: any;
 };
 
 const Login = () => {
+  const LOGIN = gql`
+    query login($email: String!, $password: String!) {
+      login(email: $email, password: $password) {
+        id
+        token
+      }
+    }
+  `;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e: any) => {
+  const [getToken, { data }] = useLazyQuery(LOGIN);
+  if (data) {
+    localStorage.setItem("token", JSON.stringify(data.login.token));
+  }
+
+  const handleSubmit = async (e: any) => {
     if (e.key === "Enter") {
-      alert("bbb");
+      try {
+        await getToken({ variables: { email, password } });
+      } catch (err) {
+        console.log("Handle me", err);
+      }
     }
   };
+  const token = localStorage.getItem("token");
+
   return (
     <div data-testid="online" className="loginMain">
       <form>
         <label id="email" htmlFor="email">
-          Email
-          <br />
           <input
+            className="inputLog"
             value={email}
             type="text"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <label id="password" htmlFor="password">
           <br />
-          Password
-          <br />
           <input
+            className="inputLog"
             type="text"
             value={password}
             name="password"
-            placeholder="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             onKeyPress={handleSubmit}
           />
         </label>
       </form>
-      <p className="link"> mot de passe oublié </p>
+      <p className="link"> Mot de passe oublié </p>
     </div>
   );
 };

@@ -1,4 +1,22 @@
-.loginMain{
+.inputLog {
+    margin-top: 1em;
+    border: none;
+    padding: 0.5em;
+    font-size: 1.1em;
+    background-color: transparent;
+    border-bottom: 2px solid #d76641;
+}
+.inputLog:focus{
+    background-color: rgba(99, 97, 97, 0.29);
+    text-decoration-line: none;
+    color: white ;
+    font-size: 1.1em;
+    outline: none;
+    border-radius: 5px;
+}
+
+.loginMain {
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;

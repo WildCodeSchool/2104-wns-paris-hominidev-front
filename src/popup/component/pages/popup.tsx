@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Login from "./popup.login";
 import StudentDashboard from "./popup.studentDashboard";
 import "./styles/popup.css";
@@ -8,7 +9,14 @@ type PopupProps = {
   online: boolean;
 };
 
-const Popup = ({ online }: PopupProps) => {
+const Popup = () => {
+  const [online, setOnline] = useState(false);
+  const token = localStorage.getItem("token");
+  console.log("je suis un token", token);
+  if (token) {
+    setOnline(true);
+  }
+
   return (
     <div className="popupMain">
       {!online ? (
