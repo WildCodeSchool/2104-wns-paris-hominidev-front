@@ -2,7 +2,6 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createUIStore } from "redux-webext";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { ApolloProvider } from "@apollo/client/react";
 import { setContext } from "@apollo/client/link/context";
 import Overlay from "./overlay/Overlay";
 
@@ -29,31 +28,12 @@ if (document.body) {
   bodyObserver.observe(document.documentElement, { childList: true });
 }
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
-});
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
-  return {
-    headers: {
-      ...headers,
-      authorization: token,
-    },
-  };
-});
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
-});
-
 async function initApp() {
   const store = await createUIStore();
   ReactDOM.render(
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <Overlay />
-      </Provider>
-    </ApolloProvider>,
+    <Provider store={store}>
+      <Overlay />
+    </Provider>,
     mountNode,
   );
 }
