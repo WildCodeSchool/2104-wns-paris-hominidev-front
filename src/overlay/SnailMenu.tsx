@@ -12,9 +12,10 @@ type SnailMenuProps = {
   children: any;
 };
 
-function SnailMenu({snailMenuOpen, setSnailMenuOpen, children}:SnailMenuProps):any {
+function SnailMenu({ snailMenuOpen, setSnailMenuOpen, children }: SnailMenuProps): any {
   const nodeRef = useRef(null);
-   return (
+
+  return (
     <Draggable nodeRef={nodeRef}>
       <div
         className="handle"
@@ -23,9 +24,11 @@ function SnailMenu({snailMenuOpen, setSnailMenuOpen, children}:SnailMenuProps):a
         ref={nodeRef}
         style={{
           position: 'absolute',
+          filter: 'drop-shadow(black 2px 4px 6px)',
+          bottom: '-30px',
+          left: '15px',
         }}
       >
-
         {children}
         <button
           aria-label="snailmenu"
@@ -61,6 +64,7 @@ function SnailMenu({snailMenuOpen, setSnailMenuOpen, children}:SnailMenuProps):a
         />
       </div>
     </Draggable>
-);};
+  );
+}
 
 export default SnailMenu;
