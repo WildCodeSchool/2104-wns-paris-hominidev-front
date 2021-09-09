@@ -1,23 +1,19 @@
-import logo from '../assets/logo/logo_picto.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
 
-const App: React.FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img alt="logo" className="App-logo" src={logo} />
-      <p>
-         Modify <code>src/App.tsx</code>  in dashboard and save to reload!
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Learn React ah ah
-      </a>
-    </header>
-  </div>
-);
+import FormerDashboard from './pages/former';
+
+const App = () => {
+  const client = new ApolloClient({
+    uri: 'http://localhost:4000',
+    cache: new InMemoryCache(),
+  });
+
+  return (
+    <ApolloProvider client={client}>
+      <FormerDashboard />
+    </ApolloProvider>
+  );
+};
 
 export default App;

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useLazyQuery, gql } from "@apollo/client";
+import React, { useState } from 'react';
+import { useLazyQuery, gql } from '@apollo/client';
 
-import "./styles/login.css";
+import './styles/login.css';
 
 type PopupProps = {
   setOnline: any;
@@ -17,23 +17,23 @@ const Login = () => {
     }
   `;
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [getToken, { data }] = useLazyQuery(LOGIN);
   if (data) {
-    localStorage.setItem("token", JSON.stringify(data.login.token));
+    localStorage.setItem('token', JSON.stringify(data.login.token));
   }
 
   const handleSubmit = async (e: any) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       try {
         await getToken({ variables: { email, password } });
       } catch (err) {
-        console.log("Handle me", err);
+        console.log('Handle me', err);
       }
     }
   };
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   return (
     <div data-testid="online" className="loginMain">

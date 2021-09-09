@@ -1,0 +1,27 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #a9d8e9;
+}
+
+.form {
+    display: flex;
+    padding: 2em;
+}
+
+fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    border: 4px solid #d76641;
+    legend{
+        display: flex;
+        font-size: larger;
+        font-weight: bold;
+        padding: 1em;
+    }
+}
