@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { ApolloProvider } from "@apollo/client/react";
-import { setContext } from "@apollo/client/link/context";
-import PopupLayout from "./pages/popup.layout";
-import Popup from "./pages/popup";
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
+import { setContext } from '@apollo/client/link/context';
+import PopupLayout from './pages/popup.layout';
+import Popup from './pages/popup';
 
 function App(): JSX.Element {
   const httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: 'http://localhost:4000/graphql',
   });
 
   const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     return {
       headers: {
         ...headers,
