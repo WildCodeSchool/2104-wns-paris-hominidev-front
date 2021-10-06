@@ -11,7 +11,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "esnext",
+    "module": "Esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noEmitOnError": true,
@@ -25,6 +25,7 @@
   },
   "include": [
     "src/**/*",
-    "./webpack.config.js"
+    "./webpack.config.js",
+    ".eslintrc.js"
   ]
 }

@@ -1,35 +1,37 @@
-import { useState } from 'react';
-import Popup from './pages/popup';
-import Register from './pages/popup.register';
-import PopupLayout from './pages/popup.layout';
+import { useState } from "react";
+
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client/react";
+import { setContext } from "@apollo/client/link/context";
+import PopupLayout from "./pages/popup.layout";
+import Popup from "./pages/popup";
 
 function App(): JSX.Element {
-   const extensionOrigin = `chrome-extension://${chrome.runtime.id}`;
-   const [online, setOnline] = useState(false);
-   const [register, setRegister] = useState(false);
-   const handleSubmit = (e: any) => {
-      if (e.key === 'Enter') {
-         setOnline(true);
-      }
-   };
-   const handleRegisterSubmit = (e: any) => {
-      if (e.key === 'Enter') {
-         console.log(e);
-         setRegister(true);
-      }
-   };
+  const httpLink = createHttpLink({
+    uri: "http://localhost:4000/graphql",
+  });
 
-   return (
+  const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem("token");
+    return {
+      headers: {
+        ...headers,
+        authorization: token,
+      },
+    };
+  });
+
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: authLink.concat(httpLink),
+  });
+
+  return (
+    <ApolloProvider client={client}>
       <PopupLayout>
-         {!register ? (
-            <Register
-               setRedirect={setRegister}
-               handleRegisterSubmit={handleRegisterSubmit}
-            />
-         ) : (
-            <Popup online={online} handleSubmit={handleSubmit} />
-         )}
+        <Popup />
       </PopupLayout>
-   );
+    </ApolloProvider>
+  );
 }
 export default App;

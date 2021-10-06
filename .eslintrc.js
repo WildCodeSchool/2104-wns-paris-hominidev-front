@@ -20,36 +20,25 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'], // could be tsconfig.json too
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: 'module',
-    project: './tsconfig.json',
   },
   rules: {
     'linebreak-style': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-        semi: true,
-        trailingComma: 'all',
-        singleQuote: false,
-        printWidth: 80,
-        tabWidth: 2,
-      },
-    ],
     // suppress errors for missing 'import React' in files
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "react/jsx-props-no-spreading":"off",
-    "react/jsx-filename-extension": [
-      2,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading':'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 0,
-    '@typescript-eslint/camelcase': 'off',
+  },
+  settings: {
+    jest: {
+      version: 'latest',
+    },
   },
 };
