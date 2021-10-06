@@ -7,14 +7,14 @@ type StudentProps = {
 
 const StudentDashboard = ({ avatar, firstName }: StudentProps) => {
   return (
-    <div className="studentMain">
-      <h1> Bienvenue {firstName} </h1>
-      <div className="studentInfo">
-        <img src={avatar} alt="avatar" className="avatar" />
-        <p> mon profil </p>
-        <p> dashboard</p>
-      </div>
       <div>
+        <div className="studentMain">
+          <h2> Bienvenue {firstName} </h2>
+          <div className="studentInfo">
+            <img src={avatar} alt="avatar" className="avatar" />
+            <p> mon profil </p>
+            <p> dashboard</p>
+          </div>
         <div className="studentGroupe">
           <div>
             <p> Mes groupes </p>
@@ -30,6 +30,9 @@ const StudentDashboard = ({ avatar, firstName }: StudentProps) => {
             </label>
           </div>
         </div>
+        <p onClick={() => localStorage.setItem('token', '')} className="link">
+          Logout
+        </p>
       </div>
     </div>
   );

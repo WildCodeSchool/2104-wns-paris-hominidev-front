@@ -61,6 +61,14 @@ const Login = () => {
           />
         </label>
       </form>
+      <p
+        onClick={() => {
+          getToken({ variables: { email, password } });
+        }}
+        className="link"
+      >
+        Login
+      </p>
       <p className="link"> Mot de passe oublié </p>
     </div>
   );
