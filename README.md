@@ -8,7 +8,7 @@
 |-- **src** *contains apps source files*  
 &nbsp;&nbsp;&nbsp;|-- **assets** *(common assets (images, fonts...)*)  
 &nbsp;&nbsp;&nbsp;|-- **parts** *(option, action, script content...)*  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **1 folder per extension part** 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- *1 folder per extension part*  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **assets** *(specific assets)*  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **pages** *(top level a display)*  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **compFct** *(specific atomic components with no display)*  
