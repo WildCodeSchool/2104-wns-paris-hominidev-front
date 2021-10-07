@@ -6,18 +6,18 @@ module.exports = {
    mode: "production",
    context: path.resolve(__dirname, "src"),
    entry: {
-      // Background script
-      "static/js/background.js": "./background/script.tsx",
-      // Hot-reload script
-      "static/js/hot-reload.js": "./hot-reload/script.js",
-      // Overlay script
-      "static/js/overlay.js": "./index.jsx",
+      // Main background script
+      "static/js/background.js": "./parts/background/entry.tsx",
+      // Hot-reload script (in background)
+      "static/js/hot-reload.js": "./parts/background/compFct/hotReload.js",
+      // Script content (Overlay)
+      "static/js/overlay.js": "./parts/scriptContent/entry.jsx",
       // Devtools script
-      "static/js/devtools.js": "./devtools/script.js",
-      // Popup script
-      "static/js/popup.js": "./popup/script.tsx",
-      // Dashboard script
-      "static/js/dashboard.js": "./dashboard/script.tsx",
+      "static/js/devtools.js": "./parts/devtools/entry.js",
+      // Action script (popup)
+      "static/js/popup.js": "./parts/action/entry.tsx",
+      // Option script (dashboard)
+      "static/js/option.js": "./parts/option/entry.tsx",
       // All of the "chunks" to extract and place in common file for faster loading of common libraries between pages
       "static/js/common.js":  [ "react", "react-dom" ]
    },
