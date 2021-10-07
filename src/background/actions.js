@@ -5,6 +5,8 @@ import {
     DECREMENT_UI_COUNTER,
     INCREMENT_BACKGROUND_COUNTER,
     INCREMENT_UI_COUNTER,
+    LOGIN,
+    LOGOUT,
 } from '../constants';
 
 export function incrementBackgroundCounter() {
@@ -26,6 +28,19 @@ export function decrementUICounter({value}) {
     return {
         type: DECREMENT_UI_COUNTER,
         value
+    };
+}
+
+export function login(token) {
+    return {
+        type: LOGIN,
+        value: token
+    };
+}
+
+export function logout() {
+    return {
+        type: LOGOUT
     };
 }
 

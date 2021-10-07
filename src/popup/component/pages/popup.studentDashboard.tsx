@@ -3,9 +3,12 @@ import "./styles/student.css";
 type StudentProps = {
   avatar: any;
   firstName: string;
+  logout: any;
 };
 
-const StudentDashboard = ({ avatar, firstName }: StudentProps) => {
+const StudentDashboard = ({ avatar, firstName, logout }: StudentProps) => {
+
+
   return (
     <div className="studentMain">
       <h1> Bienvenue {firstName} </h1>
@@ -30,6 +33,7 @@ const StudentDashboard = ({ avatar, firstName }: StudentProps) => {
             </label>
           </div>
         </div>
+        <button onClick={logout}>LOGOUT</button>
       </div>
     </div>
   );

@@ -1,26 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from './actions';
+import * as actions from '../background/actions';
 import './Overlay.css';
 import SnailMenu from './SnailMenu';
 
 function Overlay(props) {
-  const { backgroundCounter, uiCounter, incrementUICounter, decrementUICounter, sendHello } = props;
-
+  const { backgroundCounter, uiCounter, incrementUICounter, decrementUICounter, login, loginToken } = props;
+  const [online, setOnline] = useState(false);
   const [snailMenuOpen, setSnailMenuOpen] = useState(false);
-  const [toDisplay, setToDisplay] = useState(false);
 
-  setTimeout(() => {
-    setToDisplay(true);
-  }, 2000);
+  // Monitor JWT token availability in redux store to set online status
+  useEffect(() => {
+    if (loginToken) {
+      setOnline(true);
+    } else {
+      setOnline(false);
+    }
+  }, [loginToken]);
+
+
 
   return (
-    <div className="Overlay" style={{ opacity: toDisplay ? 1 : 0 }}>
+    <div className="Overlay" style={{ opacity: online ? 1 : 0 }}>
       <SnailMenu setSnailMenuOpen={setSnailMenuOpen} snailMenuOpen={snailMenuOpen}>
         <div
           style={{
-            width: 200,
+            width: '200px',
           }}
         >
           <div>Background counter: {backgroundCounter}</div>
@@ -35,9 +41,6 @@ function Overlay(props) {
                 +
               </button>
               <span> </span>
-              <button onClick={sendHello} type="button">
-                Hello
-              </button>
             </div>
           </div>
         </div>

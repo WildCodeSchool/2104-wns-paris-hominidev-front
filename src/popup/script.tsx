@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+import { createUIStore } from "redux-webext";
 
 // import { browser } from 'webextension-polyfill-ts';
 
 import App from './component/App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+async function initPopup() {
+  const store = await createUIStore();
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    document.getElementById('root'),
+  );
+}
 
+initPopup();

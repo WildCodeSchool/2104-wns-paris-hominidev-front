@@ -4,7 +4,9 @@ import {
     DECREMENT_BACKGROUND_COUNTER,
     DECREMENT_UI_COUNTER,
     INCREMENT_BACKGROUND_COUNTER,
-    INCREMENT_UI_COUNTER
+    INCREMENT_UI_COUNTER,
+    LOGIN,
+    LOGOUT,
 } from '../constants';
 
 function createCounterReducer(increment, decrement) {
@@ -21,7 +23,23 @@ function createCounterReducer(increment, decrement) {
     };
 }
 
+function createLogReducer(login, logout) {
+    return ( state = '', action ) => {
+        switch (action.type) {
+            case login:
+                return action.value;
+            case logout:
+                localStorage.setItem('token', '');
+                console.log('OUT !')
+                return '';
+            default:
+                return state;
+        }
+    };
+}
+
 export default combineReducers({
     backgroundCounter: createCounterReducer(INCREMENT_BACKGROUND_COUNTER, DECREMENT_BACKGROUND_COUNTER),
-    uiCounter: createCounterReducer(INCREMENT_UI_COUNTER, DECREMENT_UI_COUNTER)
+    uiCounter: createCounterReducer(INCREMENT_UI_COUNTER, DECREMENT_UI_COUNTER),
+    loginToken: createLogReducer(LOGIN, LOGOUT)
 });

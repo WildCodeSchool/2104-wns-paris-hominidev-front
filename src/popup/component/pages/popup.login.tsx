@@ -25,12 +25,10 @@ const Login = () => {
   }
 
   const handleSubmit = async (e: any) => {
-    if (e.key === 'Enter') {
-      try {
-        await getToken({ variables: { email, password } });
-      } catch (err) {
-        console.log('Handle me', err);
-      }
+    try {
+      await getToken({ variables: { email, password } });
+    } catch (err) {
+      console.log('Handle me', err);
     }
   };
   const token = localStorage.getItem('token');
@@ -52,15 +50,16 @@ const Login = () => {
           <br />
           <input
             className="inputLog"
-            type="text"
+            type="password"
             value={password}
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            onKeyPress={handleSubmit}
+            onKeyPress={(e) => e.key === 'Enter' ? handleSubmit(e) : null}
           />
         </label>
       </form>
+      <button onClick={handleSubmit}>LOGIN</button>
       <p className="link"> Mot de passe oublié </p>
     </div>
   );

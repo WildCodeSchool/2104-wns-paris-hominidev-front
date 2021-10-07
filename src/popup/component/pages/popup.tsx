@@ -1,30 +1,33 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
+
 import Login from './popup.login';
 import StudentDashboard from './popup.studentDashboard';
 import './styles/popup.css';
+import * as actions from '../../../background/actions';
 
 import defAvatar from '../../asset/pngegg.png';
 
-type PopupProps = {
-  online: boolean;
-};
-
-const Popup = () => {
+const Popup = (props) => {
+  const { loginToken, logout } = props;
   const [online, setOnline] = useState(false);
-  const token = localStorage.getItem('token');
-  console.log('je suis un token', token);
-
+  
+  // Monitor JWT token availability in redux store to set online status
   useEffect(() => {
-    if (token) {
+    if (loginToken !== '') {
       setOnline(true);
+    } else {
+      setOnline(false);
     }
-  }, [token]);
+  }, [loginToken]);
 
   return (
     <div className="popupMain">
-      {!online ? <Login /> : <StudentDashboard avatar={defAvatar} firstName="Oneristan" />}
+      {!online ? <Login /> : <StudentDashboard avatar={defAvatar} firstName="Oneristan" logout={logout}/>}
     </div>
   );
 };
 
-export default Popup;
+export default connect((state) => state, actions)(Popup);

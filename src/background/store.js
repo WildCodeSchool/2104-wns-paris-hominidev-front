@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 import {createBackgroundStore} from 'redux-webext';
 
-import {decrementUICounter, incrementUICounter} from './actions';
+import {decrementUICounter, incrementUICounter, login, logout} from './actions';
 import reducer from './reducers';
 
 const store = createStore(reducer);
@@ -13,5 +13,7 @@ export default createBackgroundStore({
     actions: {
         INCREMENT_UI_COUNTER: incrementUICounter,
         DECREMENT_UI_COUNTER: decrementUICounter,
+        LOGIN: login,
+        LOGOUT: logout,
     }
 });

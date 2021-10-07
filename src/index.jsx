@@ -28,7 +28,7 @@ if (document.body) {
   bodyObserver.observe(document.documentElement, { childList: true });
 }
 
-async function initApp() {
+async function initOverlay() {
   const store = await createUIStore();
   ReactDOM.render(
     <Provider store={store}>
@@ -38,4 +38,4 @@ async function initApp() {
   );
 }
 
-initApp();
+initOverlay();

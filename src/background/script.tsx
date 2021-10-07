@@ -24,14 +24,17 @@ async function start() {
     }
   }
   
-  // Redux Test
-  // increment or decrement background counter every second
   setInterval(() => {
+      // TEMP TEST increment or decrement background counter every second
       store.dispatch(Math.random() >= 0.5 ?
       incrementBackgroundCounter() :
       decrementBackgroundCounter()
       );
-      console.log("background:",store.getState());
+
+      // Monitor JWT token availability in local storage to set it in redux store
+      if (localStorage.getItem('token') !== ('' || null) && store.getState()['loginToken'] === '') {
+        store.getState()['loginToken'] = localStorage.getItem('token');
+      }
     }, 1000);
     
 start();

@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { useState } from 'react';
 
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
