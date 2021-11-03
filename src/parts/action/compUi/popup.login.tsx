@@ -28,6 +28,7 @@ const Login = () => {
     try {
       await getToken({ variables: { email, password } });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log('Handle me', err);
     }
   };
@@ -55,10 +56,11 @@ const Login = () => {
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' ? handleSubmit(e) : null}
+            onKeyPress={(e) => (e.key === 'Enter' ? handleSubmit(e) : null)}
           />
         </label>
       </form>
+      <br />
       <button onClick={handleSubmit}>LOGIN</button>
       <p className="link"> Mot de passe oublié </p>
     </div>

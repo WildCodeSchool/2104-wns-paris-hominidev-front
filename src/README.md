@@ -1,6 +1,7 @@
 # PYGMA.LINK - Folders structure & nomenclatures
 
 ## Folders structure
+
 |-- README.md  
 |-- project conf files  
 |-- **public** *contains extension core files*  
@@ -19,10 +20,11 @@
 &nbsp;&nbsp;&nbsp;|-- **uiComponents** *(common atomic components with display)*  
 
 ## Nomenclatures
+
 Inside an extension slot folder, all file must respect the following naming convention :
 
     [theme].[whateveryouwant].[ext]
 
-The corresponding test files must be : 
+The corresponding test files must be :
 
     [theme].[whateveryouwant].[test].[ext]

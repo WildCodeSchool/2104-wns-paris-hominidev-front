@@ -6,7 +6,7 @@ import '../styles/Overlay.css';
 import SnailMenu from './SnailMenu';
 
 function Overlay(props) {
-  const { backgroundCounter, uiCounter, incrementUICounter, decrementUICounter, login, loginToken } = props;
+  const { backgroundCounter, uiCounter, incrementUICounter, decrementUICounter, loginToken } = props;
   const [online, setOnline] = useState(false);
   const [snailMenuOpen, setSnailMenuOpen] = useState(false);
 
@@ -18,8 +18,6 @@ function Overlay(props) {
       setOnline(false);
     }
   }, [loginToken]);
-
-
 
   return (
     <div className="Overlay" style={{ opacity: online ? 1 : 0 }}>
