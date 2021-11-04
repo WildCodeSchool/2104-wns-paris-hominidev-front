@@ -3,11 +3,7 @@ import { useLazyQuery, gql } from '@apollo/client';
 
 import '../styles/login.css';
 
-type PopupProps = {
-  setOnline: any;
-};
-
-const Login = () => {
+const Login = (): JSX.Element => {
   const LOGIN = gql`
     query login($email: String!, $password: String!) {
       login(email: $email, password: $password) {
@@ -24,15 +20,14 @@ const Login = () => {
     localStorage.setItem('token', JSON.stringify(data.login.token));
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async () => {
     try {
-      await getToken({ variables: { email, password } });
+      getToken({ variables: { email, password } });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Handle me', err);
     }
   };
-  const token = localStorage.getItem('token');
 
   return (
     <div data-testid="online" className="loginMain">
@@ -56,12 +51,14 @@ const Login = () => {
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            onKeyPress={(e) => (e.key === 'Enter' ? handleSubmit(e) : null)}
+            onKeyPress={(e) => (e.key === 'Enter' ? handleSubmit() : null)}
           />
         </label>
       </form>
       <br />
-      <button onClick={handleSubmit}>LOGIN</button>
+      <button type="button" onClick={handleSubmit}>
+        LOGIN
+      </button>
       <p className="link"> Mot de passe oublié </p>
     </div>
   );

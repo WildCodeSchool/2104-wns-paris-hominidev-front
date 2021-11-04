@@ -7,11 +7,11 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
     // Main background script
-    'static/js/background.js': './parts/background/entry.tsx',
+    'static/js/background.js': './parts/background/entry.ts',
     // Hot-reload script (in background)
     'static/js/hot-reload.js': './parts/background/compFct/hotReload.js',
     // Script content (Overlay)
-    'static/js/overlay.js': './parts/scriptContent/entry.jsx',
+    'static/js/overlay.js': './parts/scriptContent/entry.tsx',
     // Devtools script
     'static/js/devtools.js': './parts/devtools/entry.js',
     // Action script (popup)

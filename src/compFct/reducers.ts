@@ -1,16 +1,9 @@
-import { combineReducers } from 'redux';
+import { AnyAction, combineReducers } from 'redux';
 
-import {
-  DECREMENT_BACKGROUND_COUNTER,
-  DECREMENT_UI_COUNTER,
-  INCREMENT_BACKGROUND_COUNTER,
-  INCREMENT_UI_COUNTER,
-  LOGIN,
-  LOGOUT,
-} from './constants';
+import { DECREMENT_BACKGROUND_COUNTER, DECREMENT_UI_COUNTER, INCREMENT_BACKGROUND_COUNTER, INCREMENT_UI_COUNTER, LOGIN, LOGOUT } from './constants';
 
-function createCounterReducer(increment, decrement) {
-  return (state = 100, action) => {
+const createCounterReducer = (increment: string, decrement: string) => {
+  return (state = 100, action: AnyAction) => {
     const value = action.value || 1;
     switch (action.type) {
       case increment:
@@ -21,10 +14,10 @@ function createCounterReducer(increment, decrement) {
         return state;
     }
   };
-}
+};
 
-function createLoginReducer(login, logout) {
-  return (state = '', action) => {
+const createLoginReducer = (login: string, logout: string) => {
+  return (state = '', action: AnyAction) => {
     switch (action.type) {
       case login:
         return action.value;
@@ -35,13 +28,10 @@ function createLoginReducer(login, logout) {
         return state;
     }
   };
-}
+};
 
 export default combineReducers({
-  backgroundCounter: createCounterReducer(
-    INCREMENT_BACKGROUND_COUNTER,
-    DECREMENT_BACKGROUND_COUNTER,
-  ),
+  backgroundCounter: createCounterReducer(INCREMENT_BACKGROUND_COUNTER, DECREMENT_BACKGROUND_COUNTER),
   uiCounter: createCounterReducer(INCREMENT_UI_COUNTER, DECREMENT_UI_COUNTER),
   loginToken: createLoginReducer(LOGIN, LOGOUT),
 });

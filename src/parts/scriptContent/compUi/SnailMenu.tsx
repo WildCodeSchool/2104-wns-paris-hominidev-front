@@ -1,18 +1,21 @@
-import React, { useRef } from 'react';
+import React, { ReactElement, ReactNode, useRef } from 'react';
 import Draggable from 'react-draggable';
-
 import { browser } from 'webextension-polyfill-ts';
+import { useAppSelector, useAppDispatch } from '../../background/compFct/hook';
 
 import logo from '../../../assets/logo/logo.svg';
 import snailmenuBg from '../assets/snailmenu/snailmenu.png';
+import '../styles/SnailMenu.css';
+import { decrementUICounter, incrementUICounter } from '../../../compFct/actions';
 
-type SnailMenuProps = {
-  snailMenuOpen: boolean;
-  setSnailMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  children: any;
-};
+const SnailMenu: React.FC<{
+  open: boolean;
+  setOpen: (arg0: boolean) => void;
+  children?: ReactNode;
+}> = ({ open, setOpen, children }): ReactElement => {
+  const { backgroundCounter, uiCounter } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
-function SnailMenu({ snailMenuOpen, setSnailMenuOpen, children }: SnailMenuProps): any {
   const nodeRef = useRef(null);
 
   return (
@@ -33,12 +36,12 @@ function SnailMenu({ snailMenuOpen, setSnailMenuOpen, children }: SnailMenuProps
         <button
           aria-label="snailmenu"
           onDoubleClick={() => {
-            setSnailMenuOpen(!snailMenuOpen);
+            setOpen(!open);
           }}
           style={{
             zIndex: 10,
             pointerEvents: 'auto',
-            position: snailMenuOpen ? 'absolute' : 'relative',
+            position: open ? 'absolute' : 'relative',
             backgroundImage: `url(${browser.runtime.getURL(logo)}`,
             display: 'inline-block',
             width: '70px',
@@ -53,7 +56,7 @@ function SnailMenu({ snailMenuOpen, setSnailMenuOpen, children }: SnailMenuProps
         <div
           style={{
             zIndex: 10,
-            display: snailMenuOpen ? 'block' : 'none',
+            display: open ? 'block' : 'none',
             backgroundImage: `url(${browser.runtime.getURL(snailmenuBg)}`,
             backgroundSize: 'contain',
             width: '232px',
@@ -61,10 +64,31 @@ function SnailMenu({ snailMenuOpen, setSnailMenuOpen, children }: SnailMenuProps
             backgroundRepeat: 'no-repeat',
             margin: '-80px 0 0 -80px',
           }}
-        />
+        >
+          <div
+            style={{
+              width: '200px',
+            }}
+          >
+            <div>Background counter: {backgroundCounter}</div>
+            <div>
+              UI counter: {uiCounter}
+              <div>
+                <button onClick={() => dispatch(decrementUICounter())} type="button">
+                  -
+                </button>
+                <span> </span>
+                <button onClick={() => dispatch(incrementUICounter())} type="button">
+                  +
+                </button>
+                <span> </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Draggable>
   );
-}
+};
 
 export default SnailMenu;
