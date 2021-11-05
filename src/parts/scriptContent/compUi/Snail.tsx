@@ -19,16 +19,20 @@ const Snail = (props: SnailProps): ReactElement => {
         ease: 'easeInOut',
         duration: 0.2,
       },
+      scale: [0, 1.2, 1],
+      filter: ['blur(1px)', 'blur(.5px)', 'blur(0)'],
     }),
     closed: (custom: number) => ({
       strokeWidth: 0,
-      strokeOpacity: 0,
-      opacity: 0,
+      strokeOpacity: [1, 1, 0],
+      opacity: [1, 1, 0],
       transition: {
         delay: custom * 0.02,
         ease: 'easeInOut',
         duration: 0.1,
       },
+      scale: [1, 1.2, 0],
+      filter: ['blur(.25px)', 'blur(.5px)', 'blur(2px)'],
     }),
   };
 
