@@ -1,9 +1,11 @@
-import React, { ReactElement, ReactNode, RefObject } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { browser } from 'webextension-polyfill-ts';
 import { useAppSelector, useAppDispatch } from '../../background/compFct/hook';
 
-import logo from '../../../assets/logo/logo.svg';
 import Snail from './Snail';
+import SnailButton from './SnailButton';
+import logo from '../../../assets/logo/logo.svg';
+
 import '../styles/SnailMenu.css';
 import { decrementUICounter, incrementUICounter } from '../../../compFct/actions';
 
@@ -72,6 +74,15 @@ const SnailMenu: React.FC<{
               </div>
             </div>
           </div>
+          <SnailButton
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[200, 200]}
+          />
         </Snail>
       </div>
     </div>
