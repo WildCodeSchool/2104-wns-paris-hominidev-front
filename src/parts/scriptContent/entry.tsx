@@ -1,18 +1,21 @@
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createUIStore } from "redux-webext";
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import Overlay from "./compUi/Overlay";
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createUIStore } from 'redux-webext';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import Overlay from './compUi/Overlay';
 
-const mountNode = document.createElement("pygma");
+library.add(fas);
+
+const mountNode = document.createElement('pygma');
 
 const afterBodyReady = () => {
   document.body.append(mountNode);
 };
 
-if (document.querySelector("pygma")) {
-  document.querySelector("pygma").remove();
+const pygma = document.querySelector('pygma');
+if (pygma) {
+  pygma.remove();
 }
 
 if (document.body) {
