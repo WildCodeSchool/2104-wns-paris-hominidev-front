@@ -11,10 +11,12 @@ type SnailButtonProps = {
   title: string;
   url: string;
   coords: [number, number];
+  open: boolean;
+  order: number;
 };
 
 const SnailButton = (props: SnailButtonProps): ReactElement => {
-  const { color, colorHover, colorActive, icon, title, url, coords } = props;
+  const { color, colorHover, colorActive, icon, title, url, coords, open, order } = props;
 
   const variants = {
     normal: (custom: number) => ({
@@ -51,6 +53,14 @@ const SnailButton = (props: SnailButtonProps): ReactElement => {
         backgroundColor: color,
         top: `${coords[0]}px`,
         left: `${coords[1]}px`,
+        transitionDelay: `${order * 0.02}`,
+      }}
+      custom={order}
+      animate={{
+        opacity: open ? 1 : 0,
+        transition: {
+          duration: open ? 0.5 : 0.25,
+        },
       }}
     >
       <FontAwesomeIcon icon={icon} />

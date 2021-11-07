@@ -75,13 +75,92 @@ const SnailMenu: React.FC<{
             </div>
           </div>
           <SnailButton
+            open={open}
             color="red"
             colorHover="blue"
             colorActive="green"
             icon={['fas', 'lock']}
             title="Mon bouton"
             url="https://google.com"
-            coords={[200, 200]}
+            coords={[208, 140]}
+            order={1}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[218, 223]}
+            order={2}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[140, 256]}
+            order={3}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[70, 208]}
+            order={4}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[75, 115]}
+            order={5}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[150, 63]}
+            order={6}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[235, 77]}
+            order={7}
+          />
+          <SnailButton
+            open={open}
+            color="red"
+            colorHover="blue"
+            colorActive="green"
+            icon={['fas', 'lock']}
+            title="Mon bouton"
+            url="https://google.com"
+            coords={[291, 145]}
+            order={8}
           />
         </Snail>
       </div>

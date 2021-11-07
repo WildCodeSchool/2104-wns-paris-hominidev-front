@@ -17,7 +17,7 @@ const Snail = (props: SnailProps): ReactElement => {
       transition: {
         delay: custom * 0.04,
         ease: 'easeInOut',
-        duration: 0.2,
+        duration: 0.25,
       },
       scale: [0, 1.2, 1],
       filter: ['blur(1px)', 'blur(.5px)', 'blur(0)'],
@@ -146,6 +146,22 @@ const Snail = (props: SnailProps): ReactElement => {
             animate={open ? 'open' : 'closed'}
             variants={variants}
             custom={open ? 13 : 1}
+          />
+        </g>
+        <g transform="translate(-54.794 -87.071)">
+          <motion.path
+            style={{ fill: 'none', stroke: '#000000', strokeWidth: '0.5px', strokeLinecap: 'butt', strokeLinejoin: 'miter', strokeOpacity: 1 }}
+            d="m 103.17507,138.41902 c -0.84386,3.46277 3.21063,7.09831 6.85103,7.34885 6.51184,0.44816 11.12143,-6.05159 10.92531,-12.29321 -0.2878,-9.15982 -8.91338,-15.36773 -17.36336,-14.63803 -11.262485,0.97256 -18.74285,12.32107 -17.4935,23.48104 1.572176,14.04367 15.01055,23.26362 28.22359,21.40436 16.00276,-2.25181 26.43028,-18.60746 24.06171,-34.66887 -2.79128,-18.92781 -21.11577,-31.1968 -39.08383,-28.17069 -20.744833,3.49376 -34.139806,24.89874 -30.629903,45.8567 3.264524,19.49279 19.805482,34.07796 38.778353,35.53624"
+            id="path288"
+            initial={{ pathLength: open ? 0 : 1 }}
+            animate={{
+              pathLength: open ? 1 : 0,
+              transition: {
+                ease: 'easeInOut',
+                duration: open ? 0.5 : 0.25,
+                filter: 'blur(2px)',
+              },
+            }}
           />
         </g>
       </svg>
