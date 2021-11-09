@@ -18,153 +18,129 @@ const SnailMenu: React.FC<{
   const dispatch = useAppDispatch();
 
   return (
-    <div>
+    <>
       <button
+        className="mainButton"
         aria-label="snailmenu"
         onDoubleClick={() => {
           setOpen(!open);
         }}
         style={{
-          zIndex: 10,
-          pointerEvents: 'auto',
-          position: 'absolute',
           backgroundImage: `url(${browser.runtime.getURL(logo)}`,
-          display: 'inline-block',
-          width: '70px',
-          height: '70px',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'transparent',
-          border: '0 none',
-          marginLeft: '-35px',
-          marginTop: '-20px',
         }}
         type="button"
       />
-      <div
-        style={{
-          zIndex: -1,
-          position: 'absolute',
-          marginLeft: '-200px',
-          marginTop: '-185px',
-          top: 0,
-          width: '367.681px',
-          height: '410.366px',
-        }}
-      >
-        {' '}
-        <Snail open={open}>
-          <div
-            style={{
-              width: '200px',
-            }}
-          >
-            <div>Background counter: {backgroundCounter}</div>
+      <Snail open={open}>
+        <div
+          style={{
+            width: '200px',
+          }}
+        >
+          <div>Background counter: {backgroundCounter}</div>
+          <div>
+            UI counter: {uiCounter}
             <div>
-              UI counter: {uiCounter}
-              <div>
-                <button onClick={() => dispatch(decrementUICounter())} type="button">
-                  -
-                </button>
-                <span> </span>
-                <button onClick={() => dispatch(incrementUICounter())} type="button">
-                  +
-                </button>
-                <span> </span>
-              </div>
+              <button onClick={() => dispatch(decrementUICounter())} type="button">
+                -
+              </button>
+              <span> </span>
+              <button onClick={() => dispatch(incrementUICounter())} type="button">
+                +
+              </button>
+              <span> </span>
             </div>
           </div>
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[208, 140]}
-            order={1}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[218, 223]}
-            order={2}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[140, 256]}
-            order={3}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[70, 208]}
-            order={4}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[75, 115]}
-            order={5}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[150, 63]}
-            order={6}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[235, 77]}
-            order={7}
-          />
-          <SnailButton
-            open={open}
-            color="red"
-            colorHover="blue"
-            colorActive="green"
-            icon={['fas', 'lock']}
-            title="Mon bouton"
-            url="https://google.com"
-            coords={[291, 145]}
-            order={8}
-          />
-        </Snail>
-      </div>
-    </div>
+        </div>
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[53, 10]}
+          order={1}
+        />
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[40, 86]}
+          order={2}
+        />
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[-36, 107]}
+          order={3}
+        />
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[-100, 57]}
+          order={4}
+        />
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[-93, -37]}
+          order={5}
+        />
+        <SnailButton
+          open={open}
+          color="#f5bcbc"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[-13, -88]}
+          order={6}
+        />
+        <SnailButton
+          open={open}
+          color="#e0e0e0"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[73, -68]}
+          order={7}
+        />
+        <SnailButton
+          open={open}
+          color="#bdf5bc"
+          colorHover="#0000ff"
+          colorActive="green"
+          icon={['fas', 'lock']}
+          title="Mon bouton"
+          url="https://google.com"
+          coords={[126, -3]}
+          order={8}
+        />
+      </Snail>
+    </>
   );
 };
 

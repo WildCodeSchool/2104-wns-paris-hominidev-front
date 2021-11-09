@@ -23,7 +23,27 @@ const Overlay: FC = (props) => {
   return (
     <>
       <motion.div className="Overlay" ref={constraintsRef} style={{ opacity: online ? 1 : 0 }}>
-        <motion.div className="Snail" drag dragPropagation dragMomentum={false} dragConstraints={constraintsRef} style={{ opacity: online ? 1 : 0 }}>
+        <motion.div
+          className="Snail"
+          drag
+          dragPropagation
+          dragMomentum={false}
+          dragConstraints={constraintsRef}
+          style={{
+            transformOrigin: '50% 50%',
+            zIndex: -1,
+            position: 'absolute',
+            /* margin: snailMenuOpen ? '-205px 0 0 -180px' : '-35px 0 0 -25px', */
+          }}
+          animate={{
+            width: '70px',
+            height: '70px',
+            transition: {
+              delay: 0,
+              duration: 0,
+            },
+          }}
+        >
           <SnailMenu setOpen={setSnailMenuOpen} open={snailMenuOpen} {...props} />
         </motion.div>
       </motion.div>
