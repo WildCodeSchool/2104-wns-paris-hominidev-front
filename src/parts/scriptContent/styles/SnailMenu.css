@@ -16,6 +16,7 @@
     height: 50px;
     pointer-events: initial;
     border-radius: 50px;
+    border: none;
 }
 
 .mainButton {
@@ -31,4 +32,19 @@
     border: 0 none;
     margin: -60px 0 0 15px;
 
+}
+
+.banner {
+    position: absolute;
+    border-radius: 0 3px 3px 3px;
+    background-color: #fff;
+    top: 120px;
+    left: 50px;
+    z-index: -1;
+    max-height: 200px;
+    pointer-events: initial;
+    padding: 15px;
+    box-shadow: 3px 3px 10px 3px black;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

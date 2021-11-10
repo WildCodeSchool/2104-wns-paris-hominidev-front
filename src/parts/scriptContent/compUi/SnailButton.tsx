@@ -9,14 +9,16 @@ type SnailButtonProps = {
   colorActive: string;
   icon: [IconPrefix, IconName];
   title: string;
-  url: string;
+  content: string;
   coords: [number, number];
   open: boolean;
   order: number;
+  type: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SnailButton = (props: SnailButtonProps): ReactElement => {
-  const { color, colorHover, colorActive, icon, title, url, coords, open, order } = props;
+  const { color, colorHover, colorActive, icon, title, content, coords, open, order, setMessage, type } = props;
 
   const variants = {
     open: (custom: number) => ({
@@ -44,14 +46,20 @@ const SnailButton = (props: SnailButtonProps): ReactElement => {
     const newhexColor = hexColor.replace(`#`, ``);
     const num = parseInt(newhexColor, 16);
     const amt = Math.round(2.55 * percent);
+    // eslint-disable-next-line no-bitwise
     const R = (num >> 16) + amt;
+    // eslint-disable-next-line no-bitwise
     const B = ((num >> 8) & 0x00ff) + amt;
+    // eslint-disable-next-line no-bitwise
     const G = (num & 0x0000ff) + amt;
 
     return `#${(
       0x1000000 +
+      // eslint-disable-next-line no-nested-ternary
       (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+      // eslint-disable-next-line no-nested-ternary
       (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 +
+      // eslint-disable-next-line no-nested-ternary
       (G < 255 ? (G < 1 ? 0 : G) : 255)
     )
       .toString(16)
@@ -59,7 +67,7 @@ const SnailButton = (props: SnailButtonProps): ReactElement => {
   };
 
   return (
-    <motion.div
+    <motion.button
       className="snailButton"
       style={{
         background: `linear-gradient(145deg, ${color}, ${newShade(color, -1)})`,
@@ -74,9 +82,10 @@ const SnailButton = (props: SnailButtonProps): ReactElement => {
       animate={open ? 'open' : 'close'}
       variants={variants}
       custom={order}
+      onClick={() => setMessage(content)}
     >
       <FontAwesomeIcon icon={icon} />
-    </motion.div>
+    </motion.button>
   );
 };
 
