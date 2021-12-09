@@ -9,7 +9,6 @@ WORKDIR /pygma-client-ext
 
 # copy necessary conf files
 COPY package.json ./
-COPY yarn.lock ./
 COPY tsconfig.json ./
 COPY .env ./
 COPY .parcelrc ./
