@@ -36,7 +36,7 @@
     "jest": "^27.0.6",
     "jest-chrome": "^0.7.1",
     "lodash.throttle": "^4.1.1",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -62,8 +62,8 @@
     "webext-prod": {}
   },
   "scripts": {
-    "start": "yarn excalidraw-assets-dev && parcel src/manifest.json --host localhost --hmr-port 1236 --port 1234 --target webext-dev --log-level info",
-    "build": "yarn excalidraw-assets && parcel build src/manifest.json --target webext-prod --config @parcel/config-webextension",
+    "start": "yarn excalidraw-assets-dev && echo 'toc' && parcel src/manifest.json ",
+    "build": "yarn excalidraw-assets-prod && parcel build src/manifest.json --target webext-prod --config @parcel/config-webextension",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
@@ -71,7 +71,7 @@
     "format": "prettier --write src/**/*.ts{,x}",
     "svg-to-jsx": "svgr < src/parts/scriptContent/assets/snailmenu/snail.svg > src/parts/scriptContent/compUi/snail.jsx --svgo-config src/parts/scriptContent/compUi/tools/svgr/svgo.json",
     "excalidraw-assets-prod": "cpx 'node_modules/@excalidraw/excalidraw/dist/excalidraw-assets/*.*' 'src/excalidraw-assets'",
-    "excalidraw-assets-dev": "cpx 'node_modules/@excalidraw/excalidraw/dist/excalidraw-assets-dev/*.*' 'src/excalidraw-assets-dev'"
+    "excalidraw-assets-dev": "cpx -v 'node_modules/@excalidraw/excalidraw/dist/excalidraw-assets-dev/*.*' 'src/excalidraw-assets-dev'"
   },
   "eslintConfig": {
     "extends": [
@@ -107,7 +107,6 @@
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "cpx": "^1.5.0",
-    "parcel": "^2.0.1",
-    "parcel-plugin-nuke-dist": "^1.0.1"
+    "parcel": "^2.0.1"
   }
 }

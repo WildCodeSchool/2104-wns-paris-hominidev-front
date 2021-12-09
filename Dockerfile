@@ -1,15 +1,15 @@
-FROM node:14.16-alpine
+FROM node:17-buster
 
 # add tools & dependencies
-RUN apk add --no-cache nano
-RUN apk add --no-cache make gcc g++ python3
+RUN apt update
+RUN apt -y install make nano gcc g++ python3
+RUN apt clean
 
 # create folder
 WORKDIR /pygma-client-ext
 
 # copy necessary conf files
 COPY package.json ./
-COPY yarn.lock ./
 COPY tsconfig.json ./
 COPY .env ./
 COPY .parcelrc ./
