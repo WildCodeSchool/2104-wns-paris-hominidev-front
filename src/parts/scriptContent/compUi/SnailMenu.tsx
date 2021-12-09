@@ -7,14 +7,15 @@ import Snail from './Snail';
 import SnailButton from './SnailButton';
 import logo from '../../../assets/logo/logo.svg';
 
-import '../styles/SnailMenu.css';
+import '../styles/style.scss';
 import { decrementUICounter, incrementUICounter } from '../../../compFct/actions';
 
 const SnailMenu: React.FC<{
   open: boolean;
+  drawBoard: boolean;
   setOpen: (arg0: boolean) => void;
-  children?: ReactNode;
-}> = ({ open, setOpen }): ReactElement => {
+  setDrawBoard: (arg0: boolean) => void;
+}> = ({ open, setOpen, drawBoard, setDrawBoard }): ReactElement => {
   const { backgroundCounter, uiCounter } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const [message, setMessage] = useState('');
@@ -64,10 +65,9 @@ const SnailMenu: React.FC<{
           color="#e0e0e0"
           colorHover="#0000ff"
           colorActive="green"
-          icon={['fas', 'lock']}
+          icon={['fas', 'pencil-alt']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setDrawBoard(!drawBoard)}
           type="message"
           coords={[53, 10]}
           order={1}
@@ -79,8 +79,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou')}
           type="message"
           coords={[40, 86]}
           order={2}
@@ -92,8 +91,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou 1')}
           type="message"
           coords={[-36, 107]}
           order={3}
@@ -105,8 +103,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou 2')}
           type="message"
           coords={[-100, 57]}
           order={4}
@@ -118,8 +115,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou 3')}
           type="message"
           coords={[-93, -37]}
           order={5}
@@ -131,8 +127,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="AIE AIE AIE"
+          content={() => setMessage('Coucou 4')}
           type="message"
           coords={[-13, -88]}
           order={6}
@@ -144,8 +139,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou 5')}
           type="message"
           coords={[73, -68]}
           order={7}
@@ -157,8 +151,7 @@ const SnailMenu: React.FC<{
           colorActive="green"
           icon={['fas', 'lock']}
           title="Mon bouton"
-          setMessage={setMessage}
-          content="coucou"
+          content={() => setMessage('Coucou 6')}
           type="message"
           coords={[126, -3]}
           order={8}

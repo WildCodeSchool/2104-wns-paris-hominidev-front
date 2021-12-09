@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-// import { browser } from 'webextension-polyfill-ts';
-
+import { browser } from 'webextension-polyfill-ts';
 import App from './App';
 
 ReactDOM.render(
@@ -11,4 +9,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
-

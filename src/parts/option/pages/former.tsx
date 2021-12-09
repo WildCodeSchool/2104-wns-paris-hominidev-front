@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import { ApolloClient, InMemoryCache, createHttpLink, gql, useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 import '../App.scss';
+import Draw from '../../scriptContent/compUi/Draw';
 
-const FormerDashboard = () => {
+const FormerDashboard: FC = () => {
   const [message, setMessage] = useState('');
 
   const POSTMESSAGE = gql`
@@ -29,6 +30,7 @@ const FormerDashboard = () => {
 
   return (
     <div className="App">
+      <Draw />
       <h1>PygmaAlert</h1>
       <h3>Boite de Dialogue formateur / apprenant</h3>
       <div className="form">
@@ -36,13 +38,7 @@ const FormerDashboard = () => {
           <fieldset>
             <legend>Message</legend>
             <label id="message" htmlFor="message">
-              <input
-                type="text"
-                name="message"
-                placeholder="votre message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
+              <input type="text" name="message" placeholder="votre message" value={message} onChange={(e) => setMessage(e.target.value)} />
             </label>
             <button type="button" onClick={handleSubmit}>
               Submit

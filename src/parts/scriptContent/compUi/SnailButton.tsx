@@ -9,16 +9,15 @@ type SnailButtonProps = {
   colorActive: string;
   icon: [IconPrefix, IconName];
   title: string;
-  content: string;
+  content: any;
   coords: [number, number];
   open: boolean;
   order: number;
   type: string;
-  setMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SnailButton = (props: SnailButtonProps): ReactElement => {
-  const { color, colorHover, colorActive, icon, title, content, coords, open, order, setMessage, type } = props;
+  const { color, colorHover, colorActive, icon, title, content, coords, open, order, type } = props;
 
   const variants = {
     open: (custom: number) => ({
@@ -82,7 +81,7 @@ const SnailButton = (props: SnailButtonProps): ReactElement => {
       animate={open ? 'open' : 'close'}
       variants={variants}
       custom={order}
-      onClick={() => setMessage(content)}
+      onClick={(e) => content(e)}
     >
       <FontAwesomeIcon icon={icon} />
     </motion.button>

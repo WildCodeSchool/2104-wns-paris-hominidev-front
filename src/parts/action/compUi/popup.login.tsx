@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import { useLazyQuery, gql } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+import { LOGIN } from '../../../compFct/requests';
 
 import '../styles/login.css';
 
 const Login = (): JSX.Element => {
-  const LOGIN = gql`
-    query login($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
-        id
-        token
-      }
-    }
-  `;
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [getToken, { data }] = useLazyQuery(LOGIN);
   if (data) {
     localStorage.setItem('token', JSON.stringify(data.login.token));
+    localStorage.setItem('id', JSON.stringify(data.login.id));
   }
 
   const handleSubmit = async () => {
@@ -33,14 +26,7 @@ const Login = (): JSX.Element => {
     <div data-testid="online" className="loginMain">
       <form>
         <label id="email" htmlFor="email">
-          <input
-            className="inputLog"
-            value={email}
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input className="inputLog" value={email} type="text" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label id="password" htmlFor="password">
           <br />

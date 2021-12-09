@@ -16,19 +16,19 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'], // could be tsconfig.json too
+    project: ['./tsconfig.json'],
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2015,
   },
   rules: {
     'linebreak-style': 'off',
-    // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-use-before-define': 'off',
+    'no-non-null-assertion': 'off'
   },
   settings: {
     jest: {

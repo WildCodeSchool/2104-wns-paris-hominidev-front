@@ -12,7 +12,7 @@ COPY package.json ./
 COPY yarn.lock ./
 COPY tsconfig.json ./
 COPY .env ./
-COPY webpack.config.js ./
+COPY .parcelrc ./
 
 # launch script stuffs
 COPY launch.sh ./
