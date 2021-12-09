@@ -11,8 +11,8 @@ export const COMMENTS_SUBSCRIPTION = gql`
 `;
 
 export const COMMENTS_SUBSCRIPTION2 = gql`
-  subscription Subscription($roomId: Int!) {
-    newRoomMessage(roomId: $roomId) {
+  subscription Subscription($newRoomMessageRoomId2: Int!) {
+    newRoomMessage(roomId: $newRoomMessageRoomId2) {
       message
     }
   }
