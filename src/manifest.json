@@ -4,9 +4,9 @@
   "name": "Pygma.Link Web Extension",
   "version": "0",
   "description": "to do",
-  "content_security_policy": "script-src 'self' https://staging.pygma.link; object-src 'self'; connect-src 'self' wss://staging.pygma.link;",
+  "content_security_policy": "script-src 'self' https://staging.pygma.link localhost:*; object-src 'self'; connect-src 'self' ws://localhost:1236/ ws://localhost:4000/ https://staging.pygma.link wss://staging.pygma.link http://localhost:4000/;",
   "author": "PygmaTeam",
-  "web_accessible_resources": ["**/*.png","**/*.svg", "excalidraw-assets/*.*"],
+  "web_accessible_resources": ["**/*.png","**/*.svg", "excalidraw-assets-dev/*.*", "excalidraw-assets/*.*"],
   "content_scripts": [
     {
         "matches": ["<all_urls>"],
@@ -25,6 +25,7 @@
     "default_title": "PYGMA.LINK - Menu",
     "default_popup": "./parts/action/popup.html"
   },
+  "devtools_page": "./parts/devtools/devtools.html",
   "options_ui": {
     "page": "./parts/option/option.html"
   },
@@ -36,6 +37,7 @@
     "tabs",
     "webNavigation",
     "webRequest",
+    "webRequestBlocking",
     "browsingData",
     "http://*/*",
     "https://*/*"

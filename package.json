@@ -58,7 +58,7 @@
     }
   },
   "scripts": {
-    "start": "yarn excalidraw-assets-dev && parcel src/manifest.dev.json --host localhost --hmr-port 1236 --port 1234 --target webext-dev --log-level info",
+    "start": "yarn excalidraw-assets-dev && parcel src/manifest.json --host localhost --hmr-port 1236 --port 1234 --target webext-dev --log-level info",
     "build": "yarn excalidraw-assets-prod && parcel build src/manifest.json --target webext-prod --config @parcel/config-webextension",
     "test": "jest",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
@@ -91,9 +91,9 @@
     "@parcel/transformer-sass": "^2.0.1",
     "@parcel/transformer-webmanifest": "^2.0.1",
     "@svgr/cli": "^5.5.0",
-    "@types/lodash.throttle": "^4.1.6",
     "@types/chrome": "^0.0.144",
     "@types/jest": "^26.0.23",
+    "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^15.0.0",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
@@ -103,6 +103,7 @@
     "@typescript-eslint/parser": "^4.16.1",
     "cpx": "^1.5.0",
     "parcel": "^2.0.1",
-    "parcel-plugin-nuke-dist": "^1.0.1"
+    "parcel-plugin-nuke-dist": "^1.0.1",
+    "parcel-reporter-clean-dist": "^1.0.1"
   }
 }
