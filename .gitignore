@@ -21,7 +21,7 @@ yarn-error.log*
 
 dist
 
-src/excalidraw-assets-dev
-src/excalidraw-assets
-.parcel-cache
+src/excalidraw-assets-dev/
+src/excalidraw-assets/
+.parcel-cache/
 
