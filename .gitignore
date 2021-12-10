@@ -20,3 +20,9 @@ yarn-error.log*
 .idea
 
 dist
+
+src/excalidraw-assets-dev/
+src/excalidraw-assets/
+.parcel-cache/
+
+yarn.lock

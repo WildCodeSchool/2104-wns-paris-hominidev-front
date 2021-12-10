@@ -1,40 +1,36 @@
 import { browser } from 'webextension-polyfill-ts';
 
-const scriptList = [
-    '/static/js/overlay.js'
-];
-
+const scriptList = ['/static/js/overlay.js'];
 const injectScriptsTo = (tabId) => {
-    scriptList.forEach((script) => {
-    const injectScript = browser.tabs.executeScript(tabId, {
-      file: `${script}`,
+  scriptList.forEach((script) => {
+    browser.tabs.executeScript(tabId, {
+      file: script,
       runAt: 'document_start',
-    //If the script injection fails (without the tab permission and so on) and is not checked in the callback` runtime.lastError `，
-    //It's a mistake. There is no other complicated logic in this example. You don't need to record the tab of successful injection. You can fool it like this.
+      // If the script injection fails (without the tab permission and so on) and is not checked in the callback` runtime.lastError `，
+      // It's a mistake. There is no other complicated logic in this example. You don't need to record the tab of successful injection. You can fool it like this.
     });
   });
 };
 
-//Masking receiving end does not exist error.
+// Masking receiving end does not exist error.
 browser.runtime.onConnect.addListener(() => {});
 
-//Gets all open tabs.
-const querying = browser.tabs.query({});
-querying.then((tabList) => {
-    tabList.forEach((tab) => {
-        console.log('tab',tab);
-      injectScriptsTo(tab.id);
-    });
-  }, onError);
-
 const onError = (error) => {
-    // eslint-disable-next-line no-console
-    console.log(`Error: ${error}`);
+  // eslint-disable-next-line no-console
+  console.log(`Error: ${error}`);
 };
 
+// Gets all open tabs.
+const querying = browser.tabs.query({});
+querying.then((tabList) => {
+  tabList.forEach((tab) => {
+    console.log('tab', tab.title);
+    injectScriptsTo(tab.id);
+  });
+}, onError);
 
 browser.webNavigation.onCommitted.addListener(({ tabId, frameId }) => {
-  //Filter out non main window events.
+  // Filter out non main window events.
   if (frameId !== 0) return;
   injectScriptsTo(tabId);
 });
@@ -89,4 +85,3 @@ filesInDirectory (dir).then (files =>
     const gettingSelf = browser.management.getSelf();
     gettingSelf.then(gotSelf);
  */
-

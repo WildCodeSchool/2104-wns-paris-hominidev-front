@@ -1,0 +1,113 @@
+pygma {
+    .Snail {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        pointer-events: none;
+    }
+    
+    .snailButton {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        pointer-events: initial;
+        border-radius: 50px;
+        border: none;
+    }
+    
+    .mainButton {
+        position: absolute;
+        z-index: 10;
+        pointer-events: auto;
+        display: inline-block;
+        width: 70px;
+        height: 50px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: 0 none;
+        margin: -60px 0 0 15px;
+    
+    }
+    
+    .banner {
+        position: absolute;
+        border-radius: 0 3px 3px 3px;
+        background-color: #fff;
+        top: 120px;
+        left: 50px;
+        z-index: -1;
+        max-height: 200px;
+        pointer-events: initial;
+        padding: 15px;
+        box-shadow: 3px 3px 10px 3px black;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .button-wrapper button {
+        z-index: 1;
+        height: 40px;
+        max-width: 200px;
+        margin: 10px;
+        padding: 5px;
+      }
+      
+      .excalidraw .App-menu_top .buttonList {
+        display: flex;
+      }
+      
+      .excalidraw-wrapper {
+        height: 100%;
+        width: 100%;
+      }
+      
+      
+      .excalidraw .panelColumn {
+        text-align: left;
+      }
+      
+      .export-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin: 50px;
+        
+        &__checkbox {
+          display: flex;
+        }
+      }
+
+    .Overlay {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+        height: calc(100vh - 30px);
+        pointer-events: none;
+        z-index: 10000000;
+    
+        border-radius: 5px;
+        background: linear-gradient(135deg, rgba(242,246,248,0.1) 0%, rgba(240,244,247,0.025) 4%, rgba(216,225,231,0.02) 50%, rgba(181,198,208,0.02) 51%, rgba(220,236,246,0.025) 96%, rgba(224,239,249,0.1) 100%);
+        backdrop-filter: blur(0.25px) saturate(100%) contrast(95%) brightness(110%);
+        border: 1px outset rgba(155, 155, 155, 0.5);
+        border-right-color: rgba(155, 155, 155, 0.25);
+        border-bottom-color: rgba(155, 155, 155, 0.25);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    
+        transition: opacity 3s ease-in ;
+      }
+    
+      .Overlay > * {
+        pointer-events: auto;
+      }
+}
+
+:root[dir="ltr"] .excalidraw .layer-ui__wrapper .zen-mode-transition.App-menu_bottom--transition-left {
+  transform: none;
+
+}

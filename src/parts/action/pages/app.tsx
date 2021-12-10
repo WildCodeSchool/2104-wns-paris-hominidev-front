@@ -1,6 +1,5 @@
 //@ts-nocheck
 
-
 import { useState } from 'react';
 
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -11,7 +10,7 @@ import Popup from './popup';
 
 function App(): JSX.Element {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql',
+    uri: 'https://staging.pygma.link/server/graphql',
   });
 
   const authLink = setContext((_, { headers }) => {
@@ -19,7 +18,7 @@ function App(): JSX.Element {
     return {
       headers: {
         ...headers,
-        authorization: token,
+        Authorization: token,
       },
     };
   });
