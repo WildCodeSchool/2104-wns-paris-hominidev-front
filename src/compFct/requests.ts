@@ -10,10 +10,18 @@ export const COMMENTS_SUBSCRIPTION = gql`
   }
 `;
 
-export const COMMENTS_SUBSCRIPTION2 = gql`
-  subscription Subscription($newRoomMessageRoomId2: Int!) {
-    newRoomMessage(roomId: $newRoomMessageRoomId2) {
+export const MESSAGE_SUBSCRIPTION = gql`
+  subscription Subscription($roomId: Int!) {
+    newRoomMessage(roomId: $roomId) {
       message
+    }
+  }
+`;
+
+export const POST_MESSAGE = gql`
+  query PostMessage($label: String!) {
+    postMessage(label: $label) {
+      label
     }
   }
 `;

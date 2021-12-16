@@ -36,11 +36,7 @@
   "permissions": [
     "tabs",
     "webNavigation",
-    "webRequest",
-    "webRequestBlocking",
-    "browsingData",
-    "http://*/*",
-    "https://*/*"
+    "<all_urls>"
   ]
 }
 

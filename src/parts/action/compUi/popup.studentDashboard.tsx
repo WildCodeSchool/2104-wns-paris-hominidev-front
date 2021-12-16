@@ -12,7 +12,7 @@ const StudentDashboard = ({ avatar, firstName, logout }: StudentProps): JSX.Elem
       <div className="studentMain">
         <h2> Bienvenue {firstName} </h2>
         <div className="studentInfo">
-          <img src={avatar} alt="avatar" className="avatar" />
+          <img src={`./${avatar}`} alt="avatar" className="avatar" />
           <p> mon profil </p>
           <p> dashboard</p>
         </div>

@@ -1,28 +1,51 @@
-import React, { FC, useEffect, useState, useRef, RefObject } from 'react';
+import React, { FC, useEffect, useState, useRef, RefObject, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import { browser } from 'webextension-polyfill-ts';
 import App from './Draw';
 
-import { useAppSelector } from '../../background/compFct/hook';
 import SnailMenu from './SnailMenu';
 import '../styles/style.scss';
 import { CollabContextConsumer } from '../compFct/drawCollabWrapper';
 
-const Overlay: FC = (props) => {
+const Overlay: FC = () => {
   const [online, setOnline] = useState(false);
   const [drawBoard, setDrawBoard] = useState(false);
   const [snailMenuOpen, setSnailMenuOpen] = useState(false);
-  const loginToken = useAppSelector((state) => state.loginToken);
   const constraintsRef = useRef<RefObject<Element> & HTMLDivElement>(null);
 
-  // Monitor JWT token availability in redux store to set online status
+  // send connexion data to background
+  const port = browser.runtime.connect();
+
   useEffect(() => {
-    if (loginToken) {
-      setOnline(true);
-    } else {
-      setOnline(false);
-    }
-  }, [loginToken]);
+    const waitLogin = setInterval(() => {
+      port.postMessage({
+        type: 'ISAUTH',
+        tab: '',
+        url: window.location.href,
+        group: '',
+        data: {}
+      });
+    }, 1000);
+    
+    port.onMessage.addListener((message) => {  
+      if (online === false && message.type === 'ISAUTH' && message.data.state === true) {
+        setOnline(true);
+        clearInterval(waitLogin)
+      }
+    });
+  }, [])
+  
+  useEffect(() => {
+    port.postMessage({
+      type: 'PAGELOAD',
+      tab: '',
+      url: window.location.href,
+      group: '',
+      data: {}
+    });
+  }, [])
+
+  useEffect(() => {}, [online])
 
   return (
     <CollabContextConsumer>
@@ -54,7 +77,7 @@ const Overlay: FC = (props) => {
                 : {}
             }
           >
-            <SnailMenu setOpen={setSnailMenuOpen} open={snailMenuOpen} setDrawBoard={setDrawBoard} drawBoard={drawBoard} {...props} />
+            <SnailMenu setOpen={setSnailMenuOpen} open={snailMenuOpen} setDrawBoard={setDrawBoard} drawBoard={drawBoard} />
           </motion.div>
           {drawBoard && <App />}
         </motion.div>

@@ -3,14 +3,14 @@ import { io, Socket } from 'socket.io-client';
 import { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
 import CollabWrapper from './drawCollabWrapper';
 import { encryptData, SocketUpdateData, SocketUpdateDataSource } from './drawData';
-
 import { BROADCAST, SCENE } from './drawConstants';
 import { UserIdleState } from './drawTypes';
+import { browser, Runtime } from 'webextension-polyfill-ts';
 
 class Portal {
   collab: CollabWrapper;
 
-  socket: Socket | null = null;
+  socket: Runtime.Port | null = null;
 
   socketInitialized = false; // we don't want the socket to emit any updates until it is fully initialized
 
@@ -25,22 +25,27 @@ class Portal {
   }
 
   open(socket: string, id: string, key: string): void {
-    this.socket = io(socket);
+    this.socket = browser.runtime.connect();
     this.roomId = id;
     this.roomKey = key;
 
-    // Initialize socket listeners
-    this.socket.on('init-room', () => {
-      if (this.socket) {
-        this.socket.emit('join-room', this.roomId);
+    // Initialize socket listeners   
+    this.socket.onMessage.addListener( (message: { type: string, tab: string, url: string, group: string, data: {type:string, url:string, payload:{}} }) => {
+      console.log('test',message)
+      switch(message.type) {
+        case 'init-room':
+          this.socket!.postMessage({type:'join-room', tab:'', url:'', group:'', data:['join-room', this.roomId]});
+          break;
+
+        case 'new-user':
+          this.broadcastScene(SCENE.INIT, this.collab.getSyncableElements(this.collab.getSceneElementsIncludingDeleted()), /* syncAll */ true);
+          break;
+
+     /*    case 'room-user-change':
+          const Clients: string[] = message.data.clients;
+          this.collab.setCollaborators(Clients);
+          break; */
       }
-    });
-    this.socket.on('new-user', async (_socketId: string) => {
-      this.broadcastScene(SCENE.INIT, this.collab.getSyncableElements(this.collab.getSceneElementsIncludingDeleted()), /* syncAll */ true);
-    });
-    this.socket.on('room-user-change', (clients: string[]) => {
-      console.log(clients);
-      this.collab.setCollaborators(clients);
     });
   }
 
@@ -48,7 +53,6 @@ class Portal {
     if (!this.socket) {
       return;
     }
-    this.socket.close();
     this.socket = null;
     this.roomId = null;
     this.roomKey = null;
@@ -65,9 +69,20 @@ class Portal {
     if (this.isOpen()) {
       const json = JSON.stringify(data);
       const encoded = new TextEncoder().encode(json);
-      const { encryptedBuffer, iv } = await encryptData(this.roomKey!, encoded);
+      let { encryptedBuffer, iv } = await encryptData(this.roomKey!, encoded);
 
-      this.socket?.emit(volatile ? BROADCAST.SERVER_VOLATILE : BROADCAST.SERVER, this.roomId, encryptedBuffer, iv);
+            //this.socket?.emit(volatile ? BROADCAST.SERVER_VOLATILE : BROADCAST.SERVER, this.roomId, encryptedBuffer, iv);
+
+      this.socket?.postMessage({
+        type:'draw',
+        id: this.roomId,
+        payload: [
+          volatile ? BROADCAST.SERVER_VOLATILE : BROADCAST.SERVER,
+          this.roomId, 
+          encryptedBuffer, 
+          iv
+        ]
+      });
     }
   }
 

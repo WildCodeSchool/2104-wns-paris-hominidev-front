@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { LOGIN } from '../../../compFct/requests';
 
 import '../styles/login.css';
 
-const Login = (): JSX.Element => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [getToken, { data }] = useLazyQuery(LOGIN);
-  if (data) {
-    localStorage.setItem('token', JSON.stringify(data.login.token));
-    localStorage.setItem('id', JSON.stringify(data.login.id));
-  }
-
-  const handleSubmit = async () => {
-    try {
-      getToken({ variables: { email, password } });
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log('Handle me', err);
-    }
-  };
+const Login = (props: { handleSubmit:  () => void; email: string; password: string; setEmail: any, setPassword: any }): JSX.Element => {
+  const {handleSubmit, email, setEmail, password, setPassword} = props;
 
   return (
     <div data-testid="online" className="loginMain">
@@ -37,7 +20,7 @@ const Login = (): JSX.Element => {
             name="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            onKeyPress={(e) => (e.key === 'Enter' ? handleSubmit() : null)}
+            onKeyPress={(e) => (e.key === 'Enter' ? handleSubmit : null)}
           />
         </label>
       </form>

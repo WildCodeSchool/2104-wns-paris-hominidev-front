@@ -1,14 +1,12 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { browser } from 'webextension-polyfill-ts';
 import { motion } from 'framer-motion';
-import { useAppSelector, useAppDispatch } from '../../background/compFct/hook';
 
 import Snail from './Snail';
 import SnailButton from './SnailButton';
 import logo from '../../../assets/logo/logo.svg';
 
 import '../styles/style.scss';
-import { decrementUICounter, incrementUICounter } from '../../../compFct/actions';
 
 const SnailMenu: React.FC<{
   open: boolean;
@@ -16,8 +14,6 @@ const SnailMenu: React.FC<{
   setOpen: (arg0: boolean) => void;
   setDrawBoard: (arg0: boolean) => void;
 }> = ({ open, setOpen, drawBoard, setDrawBoard }): ReactElement => {
-  const { backgroundCounter, uiCounter } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
   const [message, setMessage] = useState('');
 
   const variants = {
@@ -42,9 +38,6 @@ const SnailMenu: React.FC<{
     },
   };
 
-  useEffect(() => {
-    console.log(message);
-  }, [message]);
 
   return (
     <>
@@ -158,20 +151,6 @@ const SnailMenu: React.FC<{
         />
         <motion.div className="banner" variants={variants} animate={open && message !== '' ? 'opened' : 'closed'}>
           <div>{message}</div>
-          <div>Background counter: {backgroundCounter}</div>
-          <div>
-            UI counter: {uiCounter}
-            <div>
-              <button onClick={() => dispatch(decrementUICounter())} type="button">
-                -
-              </button>
-              <span> </span>
-              <button onClick={() => dispatch(incrementUICounter())} type="button">
-                +
-              </button>
-              <span> </span>
-            </div>
-          </div>
         </motion.div>
       </Snail>
     </>

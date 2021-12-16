@@ -5,9 +5,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { ApolloClient, InMemoryCache, split, HttpLink } from '@apollo/client';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { decrementBackgroundCounter, incrementBackgroundCounter } from '../../compFct/actions';
-import store from './compFct/store';
-import { COMMENTS_SUBSCRIPTION2 } from '../../compFct/requests';
+import { MESSAGE_SUBSCRIPTION, POST_MESSAGE } from '../../compFct/requests';
 
 console.info('----------------------------------------------');
 console.info('Background is starting...');
@@ -21,7 +19,7 @@ const wsLink = new SubscriptionClient('wss://staging.pygma.link/server/graphql',
   reconnect: true,
   lazy: true,
   connectionParams: {
-    authToken: store.getState().loginToken,
+    authToken: localStorage.getItem('token') !== ('' || null) && localStorage.getItem('token'),
   },
 });
 
@@ -32,6 +30,29 @@ wsLink.onConnecting(() => {
 wsLink.onConnected(() => {
   console.info('Server connexion is live!');
   console.info('----------------------------------------------');
+  browser.runtime.onConnect.addListener(function (port) {
+    port.onMessage.addListener(async (message) => {
+      //console.log(message.payload && message.payload[2]);
+      switch(message.type) {
+        case 'ISAUTH':
+          port.postMessage({
+            type: 'ISAUTH',
+            tabs: '',
+            url: '',
+            group:'',
+            data: { state : localStorage.getItem('token')?.length > 0  ? true : false}
+          })
+          break;
+        //case 'PAGELOAD':
+
+      default:
+        /*  apolloClient.query({
+           query: POST_MESSAGE,
+           variables: data,
+         }) */
+      }
+    });
+  });
 });
 wsLink.onDisconnected(() => {
   console.info('Server connexion is down!');
@@ -57,11 +78,12 @@ const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 // query
 apolloClient
   .subscribe({
-    query: COMMENTS_SUBSCRIPTION2,
-    variables: { newRoomMessageRoomId2: 777 },
+    query: MESSAGE_SUBSCRIPTION,
+    variables: { roomId: 777 },
   })
   .subscribe({
     next(data) {
@@ -72,49 +94,3 @@ apolloClient
       console.error('err', err);
     },
   });
-
-/* const link = new WebSocketLink({
-  // url: 'wss://staging.pygma.link/server/graphql',
-  uri: 'https://localhost:4000/graphql',
-  options: {
-    reconnect: true,
-  }, */
-/*   connectionParams: () => {
-    const sessionToken = store.getState().loginToken;
-    if (!sessionToken) {
-      return {};
-    }
-    return {
-      Authorization: `${sessionToken}`,
-    };
-  }, */
-// });
-
-/* try {
-  const result = link.request({ query: COMMENTS_SUBSCRIPTION2 });
-  console.log('result', result);
-} catch (err) {
-  console.error(err);
-}
-
-// eslint-disable-next-line func-names
-browser.runtime.onConnect.addListener(function (port) {
-  port.onMessage.addListener(async (message) => {
-    console.log(message);
-
-    port.postMessage({
-      greeting: `reply from background script, got os`,
-    });
-  });
-});
- */
-setInterval(() => {
-  // TEMP TEST increment or decrement background counter every second
-  store.dispatch(Math.random() >= 0.5 ? incrementBackgroundCounter() : decrementBackgroundCounter());
-
-  // Monitor JWT token availability in local storage to set it in redux store
-  if (localStorage.getItem('token') !== ('' || null) && store.getState().loginToken === '') {
-    store.getState().loginToken = localStorage.getItem('token');
-    store.getState().id = localStorage.getItem('ownId');
-  }
-}, 1000);

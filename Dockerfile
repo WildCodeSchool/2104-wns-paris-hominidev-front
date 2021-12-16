@@ -22,4 +22,4 @@ COPY .parcelrc ./
 # launch script stuffs
 COPY launch.sh ./
 RUN chmod +x ./launch.sh
-ENTRYPOINT ["/bin/sh", "./launch.sh"]
+ENTRYPOINT [ "/bin/sh", "-c", "./launch.sh" ]

@@ -17,6 +17,7 @@ import { decryptData, generateCollaborationLinkData, getCollaborationLink, Socke
 
 import { resolvablePromise } from './drawUtils';
 import { UserIdleState } from './drawTypes';
+import { browser } from 'webextension-polyfill-ts';
 
 interface CollabState {
   errorMessage: string;
@@ -188,9 +189,10 @@ class CollabWrapper extends PureComponent<Props, CollabState> {
   }
 
   private initializeSocketClient = async (existingRoomLinkData: null | { roomId: string; roomKey: string }): Promise<ImportedDataState | null> => {
-    if (this.portal.socket) {
+/*     if (this.portal.socket) {
+      console.log('coucou', this.portal.socket);
       return null;
-    }
+    } */
     let roomId;
     let roomKey;
 
@@ -203,8 +205,7 @@ class CollabWrapper extends PureComponent<Props, CollabState> {
     const scenePromise = resolvablePromise<ImportedDataState | null>();
 
     this.isCollaborating = true;
-
-    this.portal.open(SOCKET_SERVER, roomId, roomKey);
+    this.portal.open(browser.runtime.id, roomId, roomKey);
     if (existingRoomLinkData) {
       this.excalidrawAPI.resetScene();
     } else {
@@ -226,82 +227,98 @@ class CollabWrapper extends PureComponent<Props, CollabState> {
       this.initializeSocket();
       scenePromise.resolve(null);
     }, INITIAL_SCENE_UPDATE_TIMEOUT);
-
+    
     // All socket listeners are moving to Portal
-    this.portal.socket!.on('client-broadcast', async (encryptedData: ArrayBuffer, iv: Uint8Array) => {
-      if (!this.portal.roomKey) {
-        return;
-      }
-      const decryptedData = await this.decryptPayload(iv, encryptedData, this.portal.roomKey);
-console.log('encryptedData', encryptedData);
-      // eslint-disable-next-line default-case
-      switch (decryptedData.type) {
-        case 'INVALID_RESPONSE':
-          return;
-        case SCENE.INIT: {
-          if (!this.portal.socketInitialized) {
-            this.initializeSocket();
-            const remoteElements = decryptedData.payload.elements;
-            const reconciledElements = this.reconcileElements(remoteElements);
-            this.handleRemoteSceneUpdate(reconciledElements, {
-              init: true,
-            });
-            // noop if already resolved via init from firebase
-            scenePromise.resolve({
-              elements: reconciledElements,
-              scrollToContent: true,
-            });
+    this.portal.socket!.onMessage.addListener( (message: {
+      type: string,
+      payload: {
+        type:string,
+        url:string,
+        payload:{}
+      } }) => {
+        console.log('test', message)
+        if (message.type === 'client-broadcast') {
+          async (encryptedData: ArrayBuffer, iv: Uint8Array) => {
+            if (!this.portal.roomKey) {
+              return;
+            }
+            const decryptedData = await this.decryptPayload(iv, encryptedData, this.portal.roomKey);
+            console.log('encryptedData', encryptedData);
+            // eslint-disable-next-line default-case
+            switch (decryptedData.type) {
+              case 'INVALID_RESPONSE':
+                return;
+              case SCENE.INIT: {
+                if (!this.portal.socketInitialized) {
+                  this.initializeSocket();
+                  const remoteElements = decryptedData.payload.elements;
+                  const reconciledElements = this.reconcileElements(remoteElements);
+                  this.handleRemoteSceneUpdate(reconciledElements, {
+                    init: true,
+                  });
+                  // noop if already resolved via init from firebase
+                  scenePromise.resolve({
+                    elements: reconciledElements,
+                    scrollToContent: true,
+                  });
+                }
+                break;
+              }
+              case SCENE.UPDATE:
+                this.handleRemoteSceneUpdate(this.reconcileElements(decryptedData.payload.elements));
+                break;
+              case 'MOUSE_LOCATION': {
+                const { pointer, button, username, selectedElementIds } = decryptedData.payload;
+                const socketId: SocketUpdateDataSource['MOUSE_LOCATION']['payload']['socketId'] =
+                  decryptedData.payload.socketId ||
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore legacy, see #2094 (#2097)
+                  decryptedData.payload.socketID;
+      
+                const collaborators = new Map(this.collaborators);
+                const user = collaborators.get(socketId) || {}!;
+                user.pointer = pointer;
+                user.button = button;
+                user.selectedElementIds = selectedElementIds;
+                user.username = username;
+                collaborators.set(socketId, user);
+                this.excalidrawAPI.updateScene({
+                  collaborators,
+                });
+                break;
+              }
+              case 'IDLE_STATUS': {
+                const { userState, socketId, username } = decryptedData.payload;
+                const collaborators = new Map(this.collaborators);
+                const user = collaborators.get(socketId) || {}!;
+                user.userState = userState;
+                user.username = username;
+                this.excalidrawAPI.updateScene({
+                  collaborators,
+                });
+                break;
+              }
+            }
           }
-          break;
         }
-        case SCENE.UPDATE:
-          this.handleRemoteSceneUpdate(this.reconcileElements(decryptedData.payload.elements));
-          break;
-        case 'MOUSE_LOCATION': {
-          const { pointer, button, username, selectedElementIds } = decryptedData.payload;
-          const socketId: SocketUpdateDataSource['MOUSE_LOCATION']['payload']['socketId'] =
-            decryptedData.payload.socketId ||
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore legacy, see #2094 (#2097)
-            decryptedData.payload.socketID;
+      });
+ 
 
-          const collaborators = new Map(this.collaborators);
-          const user = collaborators.get(socketId) || {}!;
-          user.pointer = pointer;
-          user.button = button;
-          user.selectedElementIds = selectedElementIds;
-          user.username = username;
-          collaborators.set(socketId, user);
-          this.excalidrawAPI.updateScene({
-            collaborators,
-          });
-          break;
+    this.portal.socket!.onMessage.addListener( (message: {
+      type: string,
+      payload: {
+        type:string,
+        url:string,
+        payload:{}
+      } }) => {
+        if (message.type === 'first-in-room') {
+          this.initializeSocket();
+        scenePromise.resolve(null);
         }
-        case 'IDLE_STATUS': {
-          const { userState, socketId, username } = decryptedData.payload;
-          const collaborators = new Map(this.collaborators);
-          const user = collaborators.get(socketId) || {}!;
-          user.userState = userState;
-          user.username = username;
-          this.excalidrawAPI.updateScene({
-            collaborators,
-          });
-          break;
-        }
-      }
-    });
-
-    this.portal.socket!.on('first-in-room', () => {
-      if (this.portal.socket) {
-        this.portal.socket.off('first-in-room');
-      }
-      this.initializeSocket();
-      scenePromise.resolve(null);
-    });
+      });
 
     this.initializeIdleDetector();
 
-    // window.webexInstance.setShareUrl(window.location.href);
 
     return scenePromise;
   };

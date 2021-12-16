@@ -4,5 +4,3 @@ declare module "*.svg" {
 }
 declare module "react-draggable";
 
-declare module "redux-webext";
-

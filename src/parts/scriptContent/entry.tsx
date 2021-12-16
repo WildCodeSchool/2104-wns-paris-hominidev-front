@@ -3,22 +3,10 @@
 // eslint-disable-next-line import/order
 import ReactDOM from 'react-dom';
 import { browser } from 'webextension-polyfill-ts';
-import { Provider } from 'react-redux';
-import { createUIStore } from 'redux-webext';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import Overlay from './compUi/Overlay';
-
-/* ---------------- EXPERIMENT  */
-const port = browser.runtime.connect(browser.runtime.id);
-
-port.postMessage({ greeting: 'hello from content script' });
-// eslint-disable-next-line func-names
-port.onMessage.addListener(function (message: { greeting: string }) {
-  console.log(message.greeting);
-});
-/* -------------END EXPERIMENT  */
 
 library.add(fas);
 
@@ -47,11 +35,8 @@ if (document.body) {
 }
 
 async function initOverlay() {
-  const store = await createUIStore();
   ReactDOM.render(
-    <Provider store={store}>
-      <Overlay />
-    </Provider>,
+    <Overlay />,
     mountNode,
   );
 }

@@ -36,6 +36,7 @@ const Draw: FC = () => {
     }
 
     initializeScene({ collabAPI }).then((scene) => {
+      console.log(collabAPI);
       initialStatePromiseRef.current.promise.resolve(scene);
     });
   }, [collabAPI, excalidrawAPI]);
@@ -66,10 +67,8 @@ const Draw: FC = () => {
   }, [viewModeEnabled, zenModeEnabled, gridModeEnabled]);
 
   const initiateCollab = async () => {
-    // let roomLinkData = getCollaborationLinkData(window.location.href);
-    const roomId = 'cd05ad852e5a91e94280';
-    const roomKey = 'wEGdgXmrgfu1o11i5s_ZXw';
-    let roomLinkData = { roomId, roomKey };
+    let roomLinkData = getCollaborationLinkData(window.location.href);
+    console.log('roomLinkData', roomLinkData)
     if (!roomLinkData) {
       roomLinkData = await generateCollaborationLinkData();
       console.log('new room credential', roomLinkData);
