@@ -11,17 +11,25 @@ export const COMMENTS_SUBSCRIPTION = gql`
 `;
 
 export const MESSAGE_SUBSCRIPTION = gql`
-  subscription Subscription($roomId: Int!) {
-    newRoomMessage(roomId: $roomId) {
-      message
+  subscription Subscription($message: inputMessage) {
+    message(message: $message) {
+      type
+      tab
+      url
+      group
+      data
     }
   }
 `;
 
 export const POST_MESSAGE = gql`
-  query PostMessage($label: String!) {
-    postMessage(label: $label) {
-      label
+  mutation Mutation($type: String, $tab: String, $url: String, $group: ID, $data: String) {
+    postMessage(type: $type, tab: $tab, url: $url, group: $group, data: $data) {
+      type
+      tab
+      url
+      group
+      data
     }
   }
 `;
@@ -31,6 +39,8 @@ export const LOGIN = gql`
     login(email: $email, password: $password) {
       id
       token
+      role
+      groupId
     }
   }
 `;

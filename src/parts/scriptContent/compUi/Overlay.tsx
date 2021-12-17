@@ -12,9 +12,13 @@ const Overlay: FC = () => {
   const [drawBoard, setDrawBoard] = useState(false);
   const [snailMenuOpen, setSnailMenuOpen] = useState(false);
   const constraintsRef = useRef<RefObject<Element> & HTMLDivElement>(null);
-
+ 
   // send connexion data to background
   const port = browser.runtime.connect();
+
+  useEffect(() => {
+    port.postMessage({type: 'PAGELOAD'});
+  }, [])
 
   useEffect(() => {
     const waitLogin = setInterval(() => {
@@ -28,6 +32,7 @@ const Overlay: FC = () => {
     }, 1000);
     
     port.onMessage.addListener((message) => {  
+      console.log(message)
       if (online === false && message.type === 'ISAUTH' && message.data.state === true) {
         setOnline(true);
         clearInterval(waitLogin)
@@ -35,15 +40,7 @@ const Overlay: FC = () => {
     });
   }, [])
   
-  useEffect(() => {
-    port.postMessage({
-      type: 'PAGELOAD',
-      tab: '',
-      url: window.location.href,
-      group: '',
-      data: {}
-    });
-  }, [])
+
 
   useEffect(() => {}, [online])
 

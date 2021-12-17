@@ -74,13 +74,14 @@ class Portal {
             //this.socket?.emit(volatile ? BROADCAST.SERVER_VOLATILE : BROADCAST.SERVER, this.roomId, encryptedBuffer, iv);
 
       this.socket?.postMessage({
-        type:'draw',
+        type:'DRAW',
         id: this.roomId,
-        payload: [
+        data: [
           volatile ? BROADCAST.SERVER_VOLATILE : BROADCAST.SERVER,
           this.roomId, 
-          encryptedBuffer, 
-          iv
+          json, 
+         /*  encryptedBuffer, 
+          iv */
         ]
       });
     }

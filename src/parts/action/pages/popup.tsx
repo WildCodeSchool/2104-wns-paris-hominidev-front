@@ -18,14 +18,16 @@ const Popup = () => {
   if (data) {
     localStorage.setItem('token', JSON.stringify(data.login.token));
     localStorage.setItem('id', JSON.stringify(data.login.id));
+    localStorage.setItem('groupId', JSON.stringify(data.login.groupId));
+    localStorage.setItem('role', JSON.stringify(data.login.role));
   }
   
   useEffect(() => {
-    setLoginToken(localStorage.getItem('token').length > 0 && localStorage.getItem('token'))
+    setLoginToken(localStorage.getItem('token') && localStorage.getItem('token').length > 0 && localStorage.getItem('token'))
   }, []);
 
   useEffect(() => {
-    if (loginToken.length > 0) {
+    if (loginToken && loginToken.length > 0) {
       setOnline(true);
     } else {
       setOnline(false);
