@@ -14,16 +14,16 @@ console.info('Background is starting...');
 console.info('----------------------------------------------');
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/graphql',
-  //uri: 'https://staging.pygma.link/server/graphql',
+  //uri: 'http://localhost:4000/graphql',
+  uri: 'https://staging.pygma.link/server/graphql',
   headers : {authorization: localStorage.getItem('token') !== ('' || null) && localStorage.getItem('token'),},
 });
 
-//const wsLink = new SubscriptionClient('wss://staging.pygma.link/server/graphql', {
-const wsLink = new SubscriptionClient('ws://localhost:4000/graphql', {
+const wsLink = new SubscriptionClient('wss://staging.pygma.link/server/graphql', {
+//const wsLink = new SubscriptionClient('ws://localhost:4000/graphql', {
   reconnect: true,
   connectionParams: {
-    authToken: localStorage.getItem('token') !== ('' || null) && localStorage.getItem('token'),
+    authorization: localStorage.getItem('token') !== ('' || null) && localStorage.getItem('token'),
   },
 });
 

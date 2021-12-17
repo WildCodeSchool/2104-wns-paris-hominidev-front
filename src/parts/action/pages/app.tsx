@@ -10,8 +10,8 @@ import Popup from './popup';
 
 function App(): JSX.Element {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql',
-    //uri: 'https://staging.pygma.link/server/graphql',
+    //uri: 'http://localhost:4000/graphql',
+    uri: 'https://staging.pygma.link/server/graphql',
   });
 
   const authLink = setContext((_, { headers }) => {

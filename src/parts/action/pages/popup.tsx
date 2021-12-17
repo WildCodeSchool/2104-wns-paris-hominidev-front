@@ -16,10 +16,10 @@ const Popup = () => {
   const [getToken, { data }] = useLazyQuery(LOGIN);
  
   if (data) {
-    localStorage.setItem('token', JSON.stringify(data.login.token));
-    localStorage.setItem('id', JSON.stringify(data.login.id));
-    localStorage.setItem('groupId', JSON.stringify(data.login.groupId));
-    localStorage.setItem('role', JSON.stringify(data.login.role));
+    localStorage.setItem('token', data.login.token);
+    localStorage.setItem('id', data.login.id);
+    localStorage.setItem('groupId', data.login.groupId);
+    localStorage.setItem('role', data.login.role);
   }
   
   useEffect(() => {
